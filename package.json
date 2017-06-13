@@ -1,0 +1,28 @@
+{
+  "name": "@erickmerchant/time-tracking-app",
+  "productName": "Time Tracker",
+  "private": true,
+  "version": "1.0.0",
+  "description": "a simple app to track time",
+  "license": "MIT",
+  "repository": "https://github.com/erickmerchant/time-tracking-app",
+  "author": {
+    "name": "Erick Merchant",
+    "email": "erickmerchant@gmail.com",
+    "url": "http://erickmerchant.com"
+  },
+  "scripts": {
+    "test": "standard",
+    "start": "electron .",
+    "build": "electron-packager . --out=dist --asar --overwrite --all"
+  },
+  "dependencies": {
+    "electron-debug": "^1.0.0",
+    "standard": "^10.0.2"
+  },
+  "devDependencies": {
+    "devtron": "^1.1.0",
+    "electron-packager": "^8.0.0",
+    "electron": "^1.6.6"
+  }
+}
