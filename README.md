@@ -2,6 +2,8 @@
 
 > a simple app to track time
 
+This is a work in progress. Following along as I figure out how to build it at [erickmerchant.com](http://erickmerchant.com).
+
 
 ## Dev
 
@@ -26,4 +28,4 @@ Builds the app for macOS, Linux, and Windows, using [electron-packager](https://
 
 ## License
 
-MIT © [<%= name %>](<%= website %>)
+MIT © Erick Merchant
