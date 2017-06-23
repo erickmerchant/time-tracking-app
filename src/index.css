@@ -1,0 +1,22 @@
+@import './utilities.css';
+
+body {
+  font-family: system-ui;
+}
+
+.border-radius {
+  border-radius: 0.25em;
+}
+
+.min-height-100vh {
+  min-height: 100vh;
+}
+
+input {
+  font: inherit;
+  border: 0.0125em solid currentColor;
+}
+
+.placeholder-light-gray::placeholder {
+  color: var(--light-gray);
+}

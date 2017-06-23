@@ -13,16 +13,22 @@
   },
   "scripts": {
     "test": "standard",
-    "start": "electron .",
-    "build": "electron-packager . --out=dist --asar --overwrite --all"
+    "start": "assets ./ --css src/index.css --js src/index.js -w & electron .",
+    "build": "assets ./ --css src/index.css --js src/index.js && electron-packager . --out=dist --asar --overwrite --all"
   },
   "dependencies": {
+    "@erickmerchant/combine-stores": "^2.0.1",
+    "@erickmerchant/framework": "^11.0.0",
+    "@erickmerchant/router": "^14.0.0",
+    "bel": "^5.0.0",
     "electron-debug": "^1.0.0",
-    "standard": "^10.0.2"
+    "nanomorph": "^5.1.0"
   },
   "devDependencies": {
+    "@erickmerchant/assets": "^4.0.2",
     "devtron": "^1.1.0",
     "electron": "^1.7.3",
-    "electron-packager": "^8.0.0"
+    "electron-packager": "^8.0.0",
+    "standard": "^10.0.2"
   }
 }
