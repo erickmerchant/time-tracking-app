@@ -1,5 +1,4 @@
 @custom-media --breakpoint-mobile (width < 40rem);
-
 @custom-media --breakpoint-desktop (width >= 40rem);
 
 :root {
@@ -8,17 +7,11 @@
   --whitespace-3: 2rem;
   --whitespace-4: 4rem;
 
-  --width-1: calc(100% / 12);
-  --width-2: calc(100% / 12 * 2);
-  --width-3: calc(100% / 12 * 3);
-  --width-4: calc(100% / 12 * 4);
-  --width-5: calc(100% / 12 * 5);
-  --width-6: calc(100% / 12 * 6);
-  --width-7: calc(100% / 12 * 7);
-  --width-8: calc(100% / 12 * 8);
-  --width-9: calc(100% / 12 * 9);
-  --width-10: calc(100% / 12 * 10);
-  --width-11: calc(100% / 12 * 11);
+  --width-1: calc(100% / 6);
+  --width-2: calc(100% / 6 * 2);
+  --width-3: calc(100% / 6 * 3);
+  --width-4: calc(100% / 6 * 4);
+  --width-5: calc(100% / 6 * 5);
 
   --typesize-xxx-large: 2rem;
   --typesize-xx-large: 1.5rem;
@@ -33,8 +26,8 @@
   --light-gray: hsl(0, 0%, 75%);
   --white: hsl(0, 0%, 87.5%);
   --red: hsl(350, 60%, 60%);
-  --orange: hsl(30, 70%, 60%);
-  --green: hsl(140, 50%, 60%);
-  --blue: hsl(200, 70%, 60%);
-  --purple: hsl(310, 60%, 60%);
+  --yellow: hsl(62, 60%, 60%);
+  --green: hsl(134, 50%, 60%);
+  --blue: hsl(206, 60%, 60%);
+  --purple: hsl(278, 60%, 60%);
 }

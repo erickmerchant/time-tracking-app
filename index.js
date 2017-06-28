@@ -1,7 +1,22 @@
 'use strict'
 const electron = require('electron')
-
+const assert = require('assert')
+const ipcMain = electron.ipcMain
 const app = electron.app
+
+const Store = require('electron-store')
+const store = new Store({
+  defaults: {
+    tasks: [
+      { title: 'Cooking' },
+      { title: 'Cleaning' },
+      { title: 'Dishes' },
+      { title: 'Laundry' },
+      { title: 'Blogging' },
+      { title: 'Paying Bills' }
+    ]
+  }
+})
 
 // Adds debug features like hotkeys for triggering dev tools and reload
 require('electron-debug')()
@@ -18,7 +33,8 @@ function onClosed () {
 function createMainWindow () {
   const win = new electron.BrowserWindow({
     width: 600,
-    height: 400
+    height: 400,
+    backgroundColor: '#DDDDDD'
   })
 
   win.loadURL(`file://${__dirname}/index.html`)
@@ -41,4 +57,10 @@ app.on('activate', () => {
 
 app.on('ready', () => {
   mainWindow = createMainWindow()
+})
+
+ipcMain.on('search', function (e, term) {
+  assert.equal(typeof term, 'string')
+
+  e.sender.send('search', store.get('tasks', []).filter((task) => task.title.toLowerCase().indexOf(term.toLowerCase()) > -1))
 })

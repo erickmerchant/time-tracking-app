@@ -53,12 +53,6 @@
 .width-3 { width: var(--width-3); }
 .width-4 { width: var(--width-4); }
 .width-5 { width: var(--width-5); }
-.width-6 { width: var(--width-6); }
-.width-7 { width: var(--width-7); }
-.width-8 { width: var(--width-8); }
-.width-9 { width: var(--width-9); }
-.width-10 { width: var(--width-10); }
-.width-11 { width: var(--width-11); }
 .margin-1 {
   margin-top: var(--whitespace-1);
   margin-right: var(--whitespace-1);
@@ -313,12 +307,6 @@
 .mobile-width-3 { width: var(--width-3); }
 .mobile-width-4 { width: var(--width-4); }
 .mobile-width-5 { width: var(--width-5); }
-.mobile-width-6 { width: var(--width-6); }
-.mobile-width-7 { width: var(--width-7); }
-.mobile-width-8 { width: var(--width-8); }
-.mobile-width-9 { width: var(--width-9); }
-.mobile-width-10 { width: var(--width-10); }
-.mobile-width-11 { width: var(--width-11); }
 .mobile-margin-1 {
   margin-top: var(--whitespace-1);
   margin-right: var(--whitespace-1);
@@ -574,12 +562,6 @@
 .desktop-width-3 { width: var(--width-3); }
 .desktop-width-4 { width: var(--width-4); }
 .desktop-width-5 { width: var(--width-5); }
-.desktop-width-6 { width: var(--width-6); }
-.desktop-width-7 { width: var(--width-7); }
-.desktop-width-8 { width: var(--width-8); }
-.desktop-width-9 { width: var(--width-9); }
-.desktop-width-10 { width: var(--width-10); }
-.desktop-width-11 { width: var(--width-11); }
 .desktop-margin-1 {
   margin-top: var(--whitespace-1);
   margin-right: var(--whitespace-1);
@@ -797,8 +779,8 @@
 .background-white { background-color: var(--white); }
 .red { color: var(--red); }
 .background-red { background-color: var(--red); }
-.orange { color: var(--orange); }
-.background-orange { background-color: var(--orange); }
+.yellow { color: var(--yellow); }
+.background-yellow { background-color: var(--yellow); }
 .green { color: var(--green); }
 .background-green { background-color: var(--green); }
 .blue { color: var(--blue); }

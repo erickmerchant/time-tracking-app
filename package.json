@@ -13,8 +13,8 @@
   },
   "scripts": {
     "test": "standard",
-    "start": "assets ./src ./ -w & electron .",
-    "build": "npm test && assets ./src ./ && electron-packager . --out=dist --asar --overwrite --all"
+    "watch": "assets ./src ./ -w --no-min --electron & electron .",
+    "build": "npm test && assets ./src ./ --electron && electron-packager . --out=dist --asar --overwrite --all"
   },
   "dependencies": {
     "@erickmerchant/combine-stores": "^2.0.1",
@@ -22,10 +22,11 @@
     "@erickmerchant/router": "^14.0.0",
     "bel": "^5.0.0",
     "electron-debug": "^1.0.0",
+    "electron-store": "^1.1.0",
     "nanomorph": "^5.1.0"
   },
   "devDependencies": {
-    "@erickmerchant/assets": "^5.0.0",
+    "@erickmerchant/assets": "^5.1.0",
     "devtron": "^1.1.0",
     "electron": "^1.7.3",
     "electron-packager": "^8.0.0",
