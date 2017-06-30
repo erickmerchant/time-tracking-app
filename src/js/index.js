@@ -6,30 +6,40 @@ const diff = require('nanomorph')
 const target = document.body
 
 framework({target, store, component, diff})(function ({dispatch}) {
+  ipcRenderer.send('search', '')
+
   ipcRenderer.on('search', function (e, tasks) {
     dispatch('add-tasks', {tasks})
   })
-
-  dispatch()
 })
 
 function component ({state, dispatch, next}) {
   return html`
   <body class="min-height-100vh background-white dark-gray">
-    <form class="typesize-x-large flex column">
-      <input id="input" onkeyup="${search}" value="${state.term}" class="border-radius placeholder-light-gray padding-2 margin-1" placeholder="What are you doing?" />
+    <form class="typesize-x-large flex column" onsubmit="${add}">
+      <input onkeyup="${search}" name="input" value="${state.term}" class="border-radius placeholder-light-gray padding-2 margin-1" placeholder="What are you doing?" />
     </form>
     <ul>${state.tasks.map((task) => html`<li>${task.title}</li>`)}</ul>
   </body>`
 
+  function add (e) {
+    e.preventDefault()
+
+    ipcRenderer.send('add', this.input.value)
+
+    ipcRenderer.send('search', this.input.value)
+  }
+
   function search (e) {
-    if (e.keyCode === 13) {
-      // add
-      e.preventDefault()
-    } else if(e.keyCode === 27) {
-      // escape
+    if(e.keyCode === 27) {
+      this.value = ''
+
+      this.blur()
+      
+      dispatch('set-term', {term: this.value})
+
+      ipcRenderer.send('search', '')
     } else {
-      // search
       dispatch('set-term', {term: this.value})
 
       ipcRenderer.send('search', this.value)

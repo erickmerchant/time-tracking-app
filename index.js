@@ -7,14 +7,7 @@ const app = electron.app
 const Store = require('electron-store')
 const store = new Store({
   defaults: {
-    tasks: [
-      { title: 'Cooking' },
-      { title: 'Cleaning' },
-      { title: 'Dishes' },
-      { title: 'Laundry' },
-      { title: 'Blogging' },
-      { title: 'Paying Bills' }
-    ]
+    tasks: []
   }
 })
 
@@ -34,10 +27,16 @@ function createMainWindow () {
   const win = new electron.BrowserWindow({
     width: 600,
     height: 400,
-    backgroundColor: '#DDDDDD'
+    backgroundColor: '#DFDFDF',
+    show: false
   })
 
   win.loadURL(`file://${__dirname}/index.html`)
+
+  win.once('ready-to-show', () => {
+    win.show()
+  })
+
   win.on('closed', onClosed)
 
   return win
@@ -59,8 +58,22 @@ app.on('ready', () => {
   mainWindow = createMainWindow()
 })
 
-ipcMain.on('search', function (e, term) {
-  assert.equal(typeof term, 'string')
+ipcMain.on('search', function (e, title) {
+  assert.equal(typeof title, 'string')
 
-  e.sender.send('search', store.get('tasks', []).filter((task) => task.title.toLowerCase().indexOf(term.toLowerCase()) > -1))
+  const tasks = store.get('tasks', [])
+
+  const results = title.trim() !== '' ? tasks.filter((task) => task.title.toLowerCase().indexOf(title.toLowerCase()) > -1) : tasks
+
+  e.sender.send('search', results)
+})
+
+ipcMain.on('add', function (e, title) {
+  assert.equal(typeof title, 'string')
+
+  let tasks = store.get('tasks', [])
+
+  tasks = tasks.concat([{title}])
+
+  store.set('tasks', tasks)
 })
