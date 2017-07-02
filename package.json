@@ -17,18 +17,18 @@
     "build": "npm test && assets ./src ./ --electron && electron-packager . --out=dist --asar --overwrite --all"
   },
   "dependencies": {
-    "@erickmerchant/combine-stores": "^2.0.1",
-    "@erickmerchant/framework": "^11.0.0",
-    "@erickmerchant/router": "^14.0.0",
-    "bel": "^5.0.0",
+    "@erickmerchant/combine-stores": "^2.0.2",
+    "@erickmerchant/framework": "^11.0.1",
+    "@erickmerchant/router": "^14.0.1",
+    "bel": "^5.0.2",
     "electron-debug": "^1.0.0",
-    "electron-store": "^1.1.0",
-    "nanomorph": "^5.1.0"
+    "electron-store": "^1.2.0",
+    "nanomorph": "^5.1.2"
   },
   "devDependencies": {
     "@erickmerchant/assets": "^6.0.0",
     "devtron": "^1.1.0",
-    "electron": "^1.7.3",
+    "electron": "^1.7.4",
     "electron-packager": "^8.0.0",
     "standard": "^10.0.2"
   }
