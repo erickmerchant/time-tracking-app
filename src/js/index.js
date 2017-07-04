@@ -1,6 +1,5 @@
 const {ipcRenderer} = require('electron')
 const framework = require('@erickmerchant/framework')
-const assert = require('assert')
 const html = require('bel')
 const diff = require('nanomorph')
 const target = document.body
@@ -31,11 +30,11 @@ function component ({state, dispatch, next}) {
   }
 
   function search (e) {
-    if(e.keyCode === 27) {
+    if (e.keyCode === 27) {
       this.value = ''
 
       this.blur()
-      
+
       dispatch('set-term', {term: this.value})
 
       ipcRenderer.send('search', '')
