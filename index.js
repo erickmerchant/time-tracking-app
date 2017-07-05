@@ -1,6 +1,7 @@
 'use strict'
 const electron = require('electron')
 const assert = require('assert')
+const uuid = require('uuid/v1')
 const ipcMain = electron.ipcMain
 const app = electron.app
 
@@ -73,7 +74,65 @@ ipcMain.on('add', function (e, title) {
 
   let tasks = store.get('tasks', [])
 
-  tasks = tasks.concat([{title}])
+  if (title.trim() !== '') {
+    tasks = tasks.map((task) => {
+      if (task.isActive) {
+        task.isActive = false
+
+        task.totalTime += Date.now() - task.startTime
+      }
+
+      return task
+    })
+
+    tasks = tasks.concat([
+      {
+        uuid: uuid(),
+        title,
+        isActive: true,
+        startTime: Date.now(),
+        totalTime: 0
+      }
+    ])
+  }
+
+  store.set('tasks', tasks)
+})
+
+ipcMain.on('remove', function (e, uuid) {
+  assert.equal(typeof uuid, 'string')
+
+  let tasks = store.get('tasks', [])
+
+  tasks = tasks.filter((task) => task.uuid !== uuid)
+
+  store.set('tasks', tasks)
+})
+
+ipcMain.on('pause', function (e, uuid) {
+  assert.equal(typeof uuid, 'string')
+
+  let tasks = store.get('tasks', [])
+
+  let task = tasks.find((task) => task.uuid === uuid)
+
+  task.totalTime += task.isActive ? Date.now() - task.startTime : 0
+
+  task.isActive = false
+
+  store.set('tasks', tasks)
+})
+
+ipcMain.on('resume', function (e, uuid) {
+  assert.equal(typeof uuid, 'string')
+
+  let tasks = store.get('tasks', [])
+
+  let task = tasks.find((task) => task.uuid === uuid)
+
+  task.startTime = !task.isActive ? Date.now() : task.startTime
+
+  task.isActive = true
 
   store.set('tasks', tasks)
 })
