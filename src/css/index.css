@@ -27,3 +27,7 @@ button {
 .placeholder-gray::placeholder {
   color: var(--gray);
 }
+
+.white-space-nowrap {
+  white-space: nowrap;
+}

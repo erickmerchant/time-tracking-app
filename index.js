@@ -1,7 +1,7 @@
 'use strict'
 const electron = require('electron')
 const assert = require('assert')
-const uuid = require('uuid/v1')
+const uuidv1 = require('uuid/v1')
 const ipcMain = electron.ipcMain
 const app = electron.app
 
@@ -26,8 +26,8 @@ function onClosed () {
 
 function createMainWindow () {
   const win = new electron.BrowserWindow({
-    width: 600,
-    height: 400,
+    width: 700,
+    height: 500,
     backgroundColor: '#DFDFDF',
     show: false
   })
@@ -87,7 +87,7 @@ ipcMain.on('add', function (e, title) {
 
     tasks = tasks.concat([
       {
-        uuid: uuid(),
+        uuid: uuidv1(),
         title,
         isActive: true,
         startTime: Date.now(),
@@ -133,6 +133,22 @@ ipcMain.on('resume', function (e, uuid) {
   task.startTime = !task.isActive ? Date.now() : task.startTime
 
   task.isActive = true
+
+  store.set('tasks', tasks)
+})
+
+ipcMain.on('reset', function (e, uuid) {
+  assert.equal(typeof uuid, 'string')
+
+  let tasks = store.get('tasks', [])
+
+  let task = tasks.find((task) => task.uuid === uuid)
+
+  task.isActive = false
+
+  task.startTime = Date.now()
+
+  task.totalTime = 0
 
   store.set('tasks', tasks)
 })
