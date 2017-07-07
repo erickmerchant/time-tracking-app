@@ -14,6 +14,7 @@
   "scripts": {
     "test": "standard",
     "watch": "assets ./src ./ -w --no-min --electron & electron .",
+    "preview": "assets ./src ./ --electron & electron .",
     "build": "npm test && assets ./src ./ --electron && electron-packager . --out=dist --asar --overwrite --all"
   },
   "dependencies": {
