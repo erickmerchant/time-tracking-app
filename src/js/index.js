@@ -31,7 +31,7 @@ const classes = {
   },
   results: 'padding-2 margin-0 list-style-none',
   item: {
-    root: 'margin-1 padding-top-1 padding-left-1 padding-bottom-1 border-left border-5',
+    root: 'margin-1 padding-top-1 padding-left-1 padding-bottom-1 border-left border-left-5',
     col1: 'inline-block width-3 mobile-full-width padding-1 bold',
     col2: 'inline-block width-2 mobile-full-width padding-1',
     col3: 'width-3 mobile-full-width mobile-padding-horizontal-4 mobile-padding-vertical-2 mobile-inline-flex mobile-justify-around desktop-padding-1 desktop-padding-right-0 desktop-align-right desktop-inline-block white-space-nowrap',
