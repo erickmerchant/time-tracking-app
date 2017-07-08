@@ -4,6 +4,10 @@
 .content-box { box-sizing: content-box; }
 .bold { font-weight: bold; }
 .italic { font-style: italic; }
+.underline { text-decoration: underline; }
+.nowrap { white-space: nowrap; }
+.list-style-none { list-style: none; }
+.overflow-scroll { overflow: scroll; }
 .right { float: right; }
 .left { float: left; }
 .flex { display: flex;  }
@@ -880,33 +884,43 @@
 .black { color: var(--black); }
 .background-black { background-color: var(--black); }
 .border-black { border-color: var(--black); }
+.placeholder-black::placeholder { color: var(--black); }
 .dark-gray { color: var(--dark-gray); }
 .background-dark-gray { background-color: var(--dark-gray); }
 .border-dark-gray { border-color: var(--dark-gray); }
+.placeholder-dark-gray::placeholder { color: var(--dark-gray); }
 .gray { color: var(--gray); }
 .background-gray { background-color: var(--gray); }
 .border-gray { border-color: var(--gray); }
+.placeholder-gray::placeholder { color: var(--gray); }
 .light-gray { color: var(--light-gray); }
 .background-light-gray { background-color: var(--light-gray); }
 .border-light-gray { border-color: var(--light-gray); }
+.placeholder-light-gray::placeholder { color: var(--light-gray); }
 .white { color: var(--white); }
 .background-white { background-color: var(--white); }
 .border-white { border-color: var(--white); }
+.placeholder-white::placeholder { color: var(--white); }
 .red { color: var(--red); }
 .background-red { background-color: var(--red); }
 .border-red { border-color: var(--red); }
+.placeholder-red::placeholder { color: var(--red); }
 .yellow { color: var(--yellow); }
 .background-yellow { background-color: var(--yellow); }
 .border-yellow { border-color: var(--yellow); }
+.placeholder-yellow::placeholder { color: var(--yellow); }
 .green { color: var(--green); }
 .background-green { background-color: var(--green); }
 .border-green { border-color: var(--green); }
+.placeholder-green::placeholder { color: var(--green); }
 .blue { color: var(--blue); }
 .background-blue { background-color: var(--blue); }
 .border-blue { border-color: var(--blue); }
+.placeholder-blue::placeholder { color: var(--blue); }
 .purple { color: var(--purple); }
 .background-purple { background-color: var(--purple); }
 .border-purple { border-color: var(--purple); }
+.placeholder-purple::placeholder { color: var(--purple); }
 .border {
   border-top-style: solid;
   border-right-style: solid;

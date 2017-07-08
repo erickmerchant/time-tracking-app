@@ -23,7 +23,7 @@ const UNITS = [
   }
 ]
 const classes = {
-  root: 'border-box min-height-100vh margin-0 background-white dark-gray font-size-medium',
+  root: 'border-box margin-0 background-white dark-gray font-size-medium',
   form: 'flex mobile-column row padding-2 font-size-large background-light-gray border-bottom border-light-gray border-1',
   input: 'auto padding-2 margin-1 border-radius border border-2 border-gray background-white placeholder-gray',
   buttons: {
@@ -34,7 +34,7 @@ const classes = {
     root: 'margin-1 padding-top-1 padding-left-1 padding-bottom-1 border-left border-left-5',
     col1: 'inline-block width-3 mobile-full-width padding-1 bold',
     col2: 'inline-block width-2 mobile-full-width padding-1',
-    col3: 'width-3 mobile-full-width mobile-padding-horizontal-4 mobile-padding-vertical-2 mobile-inline-flex mobile-justify-around desktop-padding-1 desktop-padding-right-0 desktop-align-right desktop-inline-block white-space-nowrap',
+    col3: 'width-3 mobile-full-width mobile-padding-horizontal-4 mobile-padding-vertical-2 mobile-inline-flex mobile-justify-around desktop-padding-1 desktop-padding-right-0 desktop-align-right desktop-inline-block nowrap',
     buttons: {
       remove: 'inline-block padding-1 margin-horizontal-1 background-white border-radius border border-red red font-size-small bold',
       copy: 'inline-block padding-1 margin-horizontal-1 background-white border-radius border border-dark-gray dark-gray font-size-small bold',

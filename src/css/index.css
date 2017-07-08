@@ -1,33 +1,23 @@
 @import './utilities.css';
 
+html {
+  height: 100%;
+}
+
 body {
+  height: 100%;
+  margin: 0;
   font-family: system-ui;
 }
 
 input {
-  font: inherit;
+  font-size: inherit;
+  font-family: inherit;
 }
 
 button {
   appearance: none;
-  box-shadow: none;
-  font: inherit;
-  text-decoration: none;
-  white-space: nowrap;
-}
-
-.list-style-none {
-  list-style: none;
-}
-
-.min-height-100vh {
-  min-height: 100vh;
-}
-
-.placeholder-gray::placeholder {
-  color: var(--gray);
-}
-
-.white-space-nowrap {
+  font-size: inherit;
+  font-family: inherit;
   white-space: nowrap;
 }
