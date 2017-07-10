@@ -24,22 +24,22 @@ const UNITS = [
 ]
 const classes = {
   root: 'border-box margin-0 background-white dark-gray font-size-medium',
-  form: 'flex row padding-2 font-size-large background-light-gray border-bottom border-light-gray mobile-column',
-  input: 'auto padding-2 margin-1 border-radius border border-gray background-white placeholder-gray',
+  form: 'flex row padding-2 font-size-large background-light-gray border-bottom-light-gray mobile-column',
+  input: 'auto padding-2 margin-1 border-radius border-gray background-white placeholder-gray',
   buttons: {
-    add: 'inline-block padding-2 margin-1 background-white border-radius border border-green green bold mobile-font-size-medium'
+    add: 'inline-block padding-2 margin-1 background-white border-radius border green bold mobile-font-size-medium'
   },
   results: 'padding-2 margin-0 flex column desktop-padding-right-0',
   item: {
-    root: 'margin-1 padding-1 border-left border-left-large flex wrap justify-center',
+    root: 'margin-1 padding-1 flex wrap justify-center',
     col1: 'padding-1 bold mobile-width-half mobile-align-center desktop-width-third desktop-align-left',
     col2: 'padding-1 align-center mobile-width-half desktop-width-third',
     col3: 'mobile-self-center mobile-flex mobile-wrap mobile-justify-center mobile-margin-top-3 mobile-align-center desktop-align-right desktop-width-third',
     buttons: {
-      remove: 'inline-block padding-1 margin-1 background-white border-radius border border-red red font-size-small bold',
-      copy: 'inline-block padding-1 margin-1 background-white border-radius border border-dark-gray dark-gray font-size-small bold',
-      pause: 'inline-block padding-1 margin-1 background-white border-radius border font-size-small border-blue blue bold',
-      resume: 'inline-block padding-1 margin-1 background-white border-radius border font-size-small border-gray gray bold'
+      remove: 'inline-block padding-1 margin-1 background-white border-radius border red font-size-small bold',
+      copy: 'inline-block padding-1 margin-1 background-white border-radius border dark-gray font-size-small bold',
+      pause: 'inline-block padding-1 margin-1 background-white border-radius font-size-small border blue bold',
+      resume: 'inline-block padding-1 margin-1 background-white border-radius font-size-small border gray bold'
     }
   },
   noresults: 'padding-1 align-center'
@@ -59,7 +59,7 @@ function component ({state, dispatch, next}) {
     ${ift(state.tasks.length,
       () => html`<div class="${classes.results}">
           ${state.tasks.map((task) => {
-            return html`<div class="${classes.item.root} ${ift(task.isActive, 'border-blue', 'border-gray')}">
+            return html`<div class="${classes.item.root} ${ift(task.isActive, 'border-left-large-blue', 'border-left-large-gray')}">
               <div class="${classes.item.col1}">${task.title}</div>
               <div class="${classes.item.col2}">${format(task)}</div>
               <div class="${classes.item.col3}">
