@@ -13,9 +13,9 @@
   },
   "scripts": {
     "test": "standard",
-    "watch": "assets ./src ./ -w --no-min --electron & electron .",
-    "preview": "assets ./src ./ --electron & electron .",
-    "build": "npm test && assets ./src ./ --electron && electron-packager . --out=dist --asar --overwrite --all"
+    "watch": "assets ./src -w --no-min --electron & electron .",
+    "preview": "assets ./src --electron & electron .",
+    "build": "npm test && assets ./src --electron && electron-packager . --out=dist --asar --overwrite --all"
   },
   "dependencies": {
     "@erickmerchant/framework": "^12.1.0",
@@ -27,7 +27,7 @@
     "yo-yo": "^1.4.1"
   },
   "devDependencies": {
-    "@erickmerchant/assets": "^6.2.3",
+    "@erickmerchant/assets": "^6.3.0",
     "devtron": "^1.1.0",
     "electron": "^1.7.5",
     "electron-packager": "^8.0.0",
