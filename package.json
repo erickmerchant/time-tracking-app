@@ -27,7 +27,7 @@
     "yo-yo": "^1.4.1"
   },
   "devDependencies": {
-    "@erickmerchant/assets": "^6.3.0",
+    "@erickmerchant/assets": "^6.3.1",
     "devtron": "^1.1.0",
     "electron": "^1.7.5",
     "electron-packager": "^8.0.0",
