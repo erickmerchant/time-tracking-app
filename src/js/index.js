@@ -1,8 +1,7 @@
 const framework = require('@erickmerchant/framework')
-const html = require('yo-yo')
+const diff = require('nanomorph')
 const store = require('./store')
 const component = require('./component')
-const diff = html.update
 const target = document.body
 
 framework({target, diff, component, store})(function ({dispatch}) {

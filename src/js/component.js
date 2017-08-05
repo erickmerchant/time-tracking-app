@@ -1,6 +1,6 @@
 const {clipboard} = require('electron')
 const ift = require('@erickmerchant/ift')('')
-const html = require('yo-yo')
+const html = require('bel')
 const format = require('./format')
 const classes = {
   button: 'inline-block margin-1 background-white border-radius border bold',
@@ -21,10 +21,16 @@ const classes = {
 }
 
 module.exports = function ({state, dispatch, next}) {
+  const input = html`<input onkeyup="${search}" value="" name="input" placeholder="What are you doing?" class="${classes.input}" />`
+
+  input.isSameNode = function (target) {
+    return true
+  }
+
   return html`
   <body class="${classes.body}">
     <form onsubmit="${add}" class="${classes.form}">
-      <input onkeyup="${search}" name="input" placeholder="What are you doing?" class="${classes.input}" />
+      ${input}
       <button type="submit" class="${classes.button} ${classes.add}">
         Add
       </button>
