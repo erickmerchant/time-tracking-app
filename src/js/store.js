@@ -28,16 +28,12 @@ module.exports = function (seed) {
         ipcRenderer.send('remove', arg)
         break
 
-      case 'pause':
-        ipcRenderer.send('pause', arg)
+      case 'toggle':
+        ipcRenderer.send('toggle', arg)
         break
 
-      case 'reset':
-        ipcRenderer.send('reset', arg)
-        break
-
-      case 'resume':
-        ipcRenderer.send('resume', arg)
+      case 'copy':
+        ipcRenderer.send('copy', arg)
         break
     }
 

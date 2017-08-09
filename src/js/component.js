@@ -1,27 +1,19 @@
-const {clipboard} = require('electron')
 const ift = require('@erickmerchant/ift')('')
 const html = require('bel')
 const format = require('./format')
 const classes = {
-  button: 'inline-block margin-1 background-white border-radius border bold',
   body: 'border-box margin-0 background-white dark-gray font-size-medium',
   form: 'flex row padding-2 font-size-large background-light-gray border-bottom-light-gray mobile-column',
   input: 'auto padding-2 margin-1 border-radius border-gray background-white placeholder-gray',
-  add: 'padding-2 mobile-font-size-medium green',
   results: 'padding-2 margin-0 flex column desktop-padding-right-0',
   noResults: 'padding-1 align-center',
   item: 'margin-1 padding-1 flex wrap items-center',
-  column1: 'padding-1 bold mobile-width-half mobile-align-center desktop-width-third desktop-align-left',
-  column2: 'padding-1 align-center mobile-width-half desktop-width-third',
-  column3: 'mobile-flex mobile-wrap mobile-margin-top-2 mobile-margin-horizontal-auto mobile-justify-center mobile-align-center desktop-align-right desktop-width-third',
-  remove: 'padding-1 font-size-small red',
-  log: 'padding-1 font-size-small dark-gray',
-  pause: 'padding-1 font-size-small blue',
-  resume: 'padding-1 font-size-small gray'
+  column1: 'padding-1 bold width-half mobile-align-center desktop-align-left',
+  column2: 'padding-1 align-center width-half dark-gray'
 }
 
 module.exports = function ({state, dispatch, next}) {
-  const input = html`<input onkeyup="${search}" value="" name="input" placeholder="What are you doing?" class="${classes.input}" />`
+  const input = html`<input onkeyup="${search}" onfocus="${help('input')}" value="" name="input" placeholder="What are you doing?" class="${classes.input}" />`
 
   input.isSameNode = function (target) {
     return true
@@ -31,30 +23,13 @@ module.exports = function ({state, dispatch, next}) {
   <body class="${classes.body}">
     <form onsubmit="${add}" class="${classes.form}">
       ${input}
-      <button type="submit" class="${classes.button} ${classes.add}">
-        Add
-      </button>
     </form>
     ${ift(state.tasks.length,
       () => html`<div class="${classes.results}">
           ${state.tasks.map((task) => {
-            return html`<div class="${classes.item} ${ift(task.isActive, 'border-left-large-blue', 'border-left-large-gray')}">
+            return html`<div tabindex="0" onkeydown="${modify(task)}" onfocus="${help('task', task)}" class="${classes.item} ${ift(task.isActive, 'border-left-large-blue', 'border-left-large-gray')}">
               <div class="${classes.column1}">${task.title}</div>
               <div class="${classes.column2}">${format(task)}</div>
-              <div class="${classes.column3}">
-                ${ift(task.isActive, () => html`<button type="button" onclick=${pause(task)} class="${classes.button} ${classes.pause}">
-                  Pause
-                </button>`)}
-                ${ift(!task.isActive, () => html`<button type="button" onclick=${log(task)} class="${classes.button} ${classes.log}">
-                  Log
-                </button>`)}
-                ${ift(!task.isActive, () => html`<button type="button" onclick=${resume(task)} class="${classes.button} ${classes.resume}">
-                  Resume
-                </button>`)}
-                <button type="button" onclick=${remove(task)} class="${classes.button} ${classes.remove}">
-                  Remove
-                </button>
-              </div>
             </div>`
           })}
         </div>`,
@@ -65,8 +40,14 @@ module.exports = function ({state, dispatch, next}) {
     )}
   </body>`
 
-  function search () {
-    dispatch('search', this.value)
+  function search (e) {
+    if (e.key === 'Escape') {
+      this.value = ''
+
+      dispatch('search', this.value)
+    } else {
+      dispatch('search', this.value)
+    }
   }
 
   function add (e) {
@@ -75,29 +56,29 @@ module.exports = function ({state, dispatch, next}) {
     dispatch('add', state.term)
   }
 
-  function remove (task) {
+  function help (type, arg) {
     return () => {
-      dispatch('remove', task.uuid)
+      // console.log(arguments)
     }
   }
 
-  function pause (task) {
-    return () => {
-      dispatch('pause', task.uuid)
-    }
-  }
+  function modify (task) {
+    return function (e) {
+      switch (true) {
+        case e.key === 'c' && e.metaKey === true:
+          dispatch('copy', task.uuid)
+          break
 
-  function log (task) {
-    return () => {
-      dispatch('reset', task.uuid)
+        case e.key === 'Backspace':
+          dispatch('remove', task.uuid)
+          break
 
-      clipboard.writeText(format(task))
-    }
-  }
+        case e.key === 'Enter':
+          dispatch('toggle', task.uuid)
+          break
+      }
 
-  function resume (task) {
-    return () => {
-      dispatch('resume', task.uuid)
+      console.log(e)
     }
   }
 }

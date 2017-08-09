@@ -1,9 +1,8 @@
 'use strict'
-const electron = require('electron')
+const {ipcMain, app, clipboard, BrowserWindow} = require('electron')
 const assert = require('assert')
 const uuidv1 = require('uuid/v1')
-const ipcMain = electron.ipcMain
-const app = electron.app
+const format = require('./src/js/format')
 
 const Store = require('electron-store')
 const store = new Store({
@@ -25,7 +24,7 @@ function onClosed () {
 }
 
 function createMainWindow () {
-  const win = new electron.BrowserWindow({
+  const win = new BrowserWindow({
     width: 700,
     height: 500,
     backgroundColor: '#DFDFDF',
@@ -109,40 +108,34 @@ ipcMain.on('remove', function (e, uuid) {
   store.set('tasks', tasks)
 })
 
-ipcMain.on('pause', function (e, uuid) {
+ipcMain.on('toggle', function (e, uuid) {
   assert.equal(typeof uuid, 'string')
 
   let tasks = store.get('tasks', [])
 
   let task = tasks.find((task) => task.uuid === uuid)
 
-  task.totalTime += task.isActive ? Date.now() - task.startTime : 0
+  if (task.isActive) {
+    task.totalTime += task.isActive ? Date.now() - task.startTime : 0
 
-  task.isActive = false
+    task.isActive = false
+  } else {
+    task.startTime = !task.isActive ? Date.now() : task.startTime
+
+    task.isActive = true
+  }
 
   store.set('tasks', tasks)
 })
 
-ipcMain.on('resume', function (e, uuid) {
+ipcMain.on('copy', function (e, uuid) {
   assert.equal(typeof uuid, 'string')
 
   let tasks = store.get('tasks', [])
 
   let task = tasks.find((task) => task.uuid === uuid)
 
-  task.startTime = !task.isActive ? Date.now() : task.startTime
-
-  task.isActive = true
-
-  store.set('tasks', tasks)
-})
-
-ipcMain.on('reset', function (e, uuid) {
-  assert.equal(typeof uuid, 'string')
-
-  let tasks = store.get('tasks', [])
-
-  let task = tasks.find((task) => task.uuid === uuid)
+  clipboard.writeText(format(task))
 
   task.isActive = false
 
