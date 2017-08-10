@@ -20,6 +20,21 @@ let mainWindow
 function onClosed () {
   // Dereference the window
   // For multiple windows store them in an array
+
+  let tasks = store.get('tasks', [])
+
+  tasks = tasks.map((task) => {
+    if (task.isActive) {
+      task.isActive = false
+
+      task.totalTime += Date.now() - task.startTime
+    }
+
+    return task
+  })
+
+  store.set('tasks', tasks)
+
   mainWindow = null
 }
 
