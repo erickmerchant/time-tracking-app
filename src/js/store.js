@@ -14,7 +14,8 @@ module.exports = function (seed) {
 
     return {
       tasks: [],
-      term: ''
+      term: '',
+      help: false
     }
   })
 
@@ -38,6 +39,10 @@ module.exports = function (seed) {
     }
 
     commit((state) => {
+      if (action === 'help') {
+        state.help = arg
+      }
+
       if (action === 'search') {
         state.term = arg
       }

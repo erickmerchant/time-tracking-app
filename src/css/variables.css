@@ -13,15 +13,16 @@
   --border-width: 3px;
   --border-width-large: 5px;
   --border-radius: 3px;
+  --border-radius-round: 100%;
 
-  --black: hsl(0, 0%, 7.5%);
-  --dark-gray: hsl(0, 0%, 37.5%);
-  --gray: hsl(0, 0%, 67.5%);
-  --light-gray: hsl(0, 0%, 97.5%);
-  --white: hsl(0, 0%, 100%);
-  --red: hsl(350, 70%, 75%);
-  --yellow: hsl(62, 70%, 75%);
-  --green: hsl(134, 70%, 75%);
-  --blue: hsl(206, 70%, 75%);
-  --purple: hsl(278, 70%, 75%);
+  --black: hsl(0, 0%, 10%);
+  --dark-gray: hsl(0, 0%, 32%);
+  --gray: hsl(0, 0%, 54%);
+  --light-gray: hsl(0, 0%, 76%);
+  --white: hsl(0, 0%, 98%);
+  --red: hsl(344, 80%, 75%);
+  --yellow: hsl(56, 80%, 75%);
+  --green: hsl(128, 80%, 75%);
+  --blue: hsl(200, 80%, 75%);
+  --purple: hsl(272, 80%, 75%);
 }

@@ -508,3 +508,4 @@
 .border-bottom-large { border-bottom: var(--border-width-large) solid currentColor; }
 .border-left-large { border-left: var(--border-width-large) solid currentColor; }
 .border-radius { border-radius: var(--border-radius); }
+.border-radius-round { border-radius: var(--border-radius-round); }

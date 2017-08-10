@@ -22,3 +22,7 @@ button {
   font-family: inherit;
   white-space: nowrap;
 }
+
+.max-height-100vh {
+  max-height: 100vh;
+}

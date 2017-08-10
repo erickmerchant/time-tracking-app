@@ -20,6 +20,7 @@
   "dependencies": {
     "@erickmerchant/framework": "^12.1.0",
     "@erickmerchant/ift": "^4.0.1",
+    "@erickmerchant/router": "^14.1.0",
     "bel": "^5.0.2",
     "electron-debug": "^1.4.0",
     "electron-store": "^1.2.0",

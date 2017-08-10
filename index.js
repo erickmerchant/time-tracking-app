@@ -120,6 +120,14 @@ ipcMain.on('toggle', function (e, uuid) {
 
     task.isActive = false
   } else {
+    tasks.forEach((task) => {
+      if (task.isActive) {
+        task.isActive = false
+
+        task.totalTime += Date.now() - task.startTime
+      }
+    })
+
     task.startTime = !task.isActive ? Date.now() : task.startTime
 
     task.isActive = true
@@ -136,8 +144,6 @@ ipcMain.on('copy', function (e, uuid) {
   let task = tasks.find((task) => task.uuid === uuid)
 
   clipboard.writeText(format(task))
-
-  task.isActive = false
 
   task.startTime = Date.now()
 
