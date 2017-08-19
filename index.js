@@ -1,5 +1,5 @@
 'use strict'
-const {ipcMain, app, clipboard, BrowserWindow} = require('electron')
+const {ipcMain, app, clipboard, BrowserWindow, Menu} = require('electron')
 const assert = require('assert')
 const uuidv1 = require('uuid/v1')
 const format = require('./src/js/format')
@@ -71,6 +71,25 @@ app.on('activate', () => {
 
 app.on('ready', () => {
   mainWindow = createMainWindow()
+
+  var template = [
+    {
+      label: 'Time Tracker',
+      submenu: [
+        {role: 'quit'}
+      ]
+    },
+    {
+      label: 'Edit',
+      submenu: [
+        {role: 'cut'},
+        {role: 'copy'},
+        {role: 'paste'}
+      ]
+    }
+  ]
+
+  Menu.setApplicationMenu(Menu.buildFromTemplate(template))
 })
 
 ipcMain.on('search', function (e, title) {

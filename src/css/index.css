@@ -23,6 +23,19 @@ button {
   white-space: nowrap;
 }
 
+kbd {
+  text-transform: uppercase;
+  font-family: system-ui;
+  font-weight: bold;
+}
+
 .max-height-100vh {
   max-height: 100vh;
+}
+
+.icon {
+  width: 1em; /* 1 */
+  height: 1em;
+  vertical-align: -0.125em; /* 2 */
+  fill: currentcolor;
 }

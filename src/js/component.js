@@ -13,9 +13,12 @@ const classes = {
   item: 'margin-1 padding-1 flex wrap items-center',
   column1: 'padding-1 bold width-half mobile-align-center desktop-align-left',
   column2: 'padding-1 align-center width-half',
+  clock: 'icon margin-horizontal-1',
   help: 'background-light-gray padding-2 font-size-small'
 }
-const commonHelp = 'Use TAB and SHIFT + TAB to navigate.'
+const icons = {
+  clock: require('geomicons-open/src/clock')
+}
 
 module.exports = function ({state, dispatch, next}) {
   const input = html`<input autofocus onkeyup="${search}" onfocus="${() => dispatch('help', 'input')}" onblur="${() => dispatch('help', false)}" value="" name="input" placeholder="What are you doing?" class="${classes.input}" />`
@@ -37,7 +40,12 @@ module.exports = function ({state, dispatch, next}) {
             ${state.tasks.map((task) => {
               return html`<div tabindex="0" onkeydown="${modify(task)}" onfocus="${() => dispatch('help', 'task')}" onblur="${() => dispatch('help', false)}" class="${classes.item} ${ift(task.isActive, 'border-left-large-blue', 'border-left-large-gray')}">
                 <div class="${classes.column1}">${task.title}</div>
-                <div class="${classes.column2}">${format(task)}</div>
+                <div class="${classes.column2}">
+                  <svg class="${classes.clock}" viewBox="0 0 32 32">
+                    <path d="${icons.clock}">
+                  </svg>
+                  ${format(task)}
+                </div>
               </div>`
             })}
           </div>`,
@@ -49,12 +57,12 @@ module.exports = function ({state, dispatch, next}) {
     </main>
     <div class="${classes.help}">
       ${ift(state.help, () => route(state.help, (on) => {
-        on('input', () => `Type to search. Press ENTER to add. ${state.term !== '' ? 'Press BACKSPACE to clear the input.' : ''}. ${commonHelp}`)
+        on('input', () => html`<span>Type to search. Press <kbd>return</kbd> to add. ${state.term !== '' ? html`<span>Press <kbd>esc</kbd> to clear the input.</span>` : ''} Use <kbd>tab</kbd> and <kbd>shift + tab</kbd> to navigate.</span>`)
 
-        on('task', () => `Press ENTER to toggle. Press BACKSPACE to delete. Press METAKEY + C to copy (also resets time). ${commonHelp}`)
+        on('task', () => html`<span>Press <kbd>return</kbd> to toggle. Press <kbd>delete</kbd> to delete. Press <kbd>command + c</kbd> to copy (also resets time). Use <kbd>tab</kbd> and <kbd>shift + tab</kbd> to navigate.</span>`)
 
-        on(() => commonHelp)
-      }), commonHelp)}
+        on(() => html`<span>Use <kbd>tab</kbd> and <kbd>shift + tab</kbd> to navigate.</span>`)
+      }), html`<span>Use <kbd>tab</kbd> and <kbd>shift + tab</kbd> to navigate.</span>`)}
     </div>
   </body>`
 
