@@ -6,11 +6,7 @@
   "description": "a simple app to track time",
   "license": "MIT",
   "repository": "https://github.com/erickmerchant/time-tracking-app",
-  "author": {
-    "name": "Erick Merchant",
-    "email": "erickmerchant@gmail.com",
-    "url": "http://erickmerchant.com"
-  },
+  "author": "Erick Merchant <erickmerchant@gmail.com>",
   "scripts": {
     "test": "standard",
     "watch": "assets ./src -w --no-min --electron & electron .",
@@ -32,7 +28,7 @@
     "@erickmerchant/assets": "^6.4.1",
     "devtron": "^1.1.0",
     "electron": "^1.7.6",
-    "electron-packager": "^8.0.0",
+    "electron-packager": "^9.0.0",
     "standard": "^10.0.3"
   }
 }
