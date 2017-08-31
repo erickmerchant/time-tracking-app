@@ -27,7 +27,7 @@
   "devDependencies": {
     "@erickmerchant/assets": "^6.4.3",
     "devtron": "^1.1.0",
-    "electron": "^1.7.6",
+    "electron": "^1.7.7",
     "electron-packager": "^9.0.0",
     "standard": "^10.0.3"
   }
