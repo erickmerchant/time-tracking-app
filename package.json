@@ -14,10 +14,10 @@
     "build": "npm test && assets ./src --no-min --electron && electron-packager . --out=dist --asar --overwrite --all"
   },
   "dependencies": {
-    "@erickmerchant/framework": "^12.1.0",
-    "@erickmerchant/ift": "^4.0.1",
-    "@erickmerchant/router": "^14.1.0",
-    "bel": "^5.0.2",
+    "@erickmerchant/framework": "^12.1.1",
+    "@erickmerchant/ift": "^4.0.2",
+    "@erickmerchant/router": "^14.1.1",
+    "bel": "^5.1.0",
     "electron-debug": "^1.4.0",
     "electron-store": "^1.2.0",
     "geomicons-open": "^2.0.0",
@@ -25,7 +25,7 @@
     "uuid": "^3.1.0"
   },
   "devDependencies": {
-    "@erickmerchant/assets": "^6.4.3",
+    "@erickmerchant/assets": "^6.4.4",
     "devtron": "^1.1.0",
     "electron": "^1.8.0",
     "electron-packager": "^9.0.1",
