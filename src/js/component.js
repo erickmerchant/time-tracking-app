@@ -1,7 +1,7 @@
 const ift = require('@erickmerchant/ift')('')
 const {route} = require('@erickmerchant/router')()
 const html = require('bel')
-const format = require('./format')
+const format = require('../format')
 const classes = {
   body: 'border-box flex column margin-0 background-white font-size-medium max-height-100vh dark-gray',
   form: 'padding-2 font-size-large background-light-gray mobile-column',

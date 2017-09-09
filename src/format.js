@@ -1,18 +1,22 @@
+const MINUTE = 60000
+const HOUR = MINUTE * 60
+const DAY = HOUR * 8
+const WEEK = DAY * 5
 const UNITS = [
   {
-    value: 1000 * 60 * 60 * 8 * 5,
+    value: WEEK,
     label: 'w'
   },
   {
-    value: 1000 * 60 * 60 * 8,
+    value: DAY,
     label: 'd'
   },
   {
-    value: 1000 * 60 * 60,
+    value: HOUR,
     label: 'h'
   },
   {
-    value: 1000 * 60,
+    value: MINUTE,
     label: 'm'
   }
 ]

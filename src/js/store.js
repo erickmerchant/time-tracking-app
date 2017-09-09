@@ -39,12 +39,14 @@ module.exports = function (seed) {
     }
 
     commit((state) => {
-      if (action === 'help') {
-        state.help = arg
-      }
+      switch (action) {
+        case 'help':
+          state.help = arg
+          break
 
-      if (action === 'search') {
-        state.term = arg
+        case 'search':
+          state.term = arg
+          break
       }
 
       ipcRenderer.send('search', state.term)

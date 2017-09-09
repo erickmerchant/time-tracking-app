@@ -9,9 +9,9 @@
   "author": "Erick Merchant <erickmerchant@gmail.com>",
   "scripts": {
     "test": "standard",
-    "watch": "assets ./src -w --no-min --electron & electron .",
-    "preview": "assets ./src --no-min --electron & electron .",
-    "build": "npm test && assets ./src --no-min --electron && electron-packager . --out=dist --asar --overwrite --all"
+    "watch": "assets ./src ./build -w --no-min --electron & electron .",
+    "preview": "assets ./src ./build --no-min --electron & electron .",
+    "build": "npm test && assets ./src ./build --no-min --electron && electron-packager . --out=dist --asar --overwrite --all"
   },
   "dependencies": {
     "@erickmerchant/framework": "^12.1.2",
