@@ -28,7 +28,7 @@
     "@erickmerchant/assets": "^6.4.8",
     "devtron": "^1.1.0",
     "electron": "^1.8.0",
-    "electron-packager": "^9.0.1",
+    "electron-packager": "^9.1.0",
     "standard": "^10.0.3"
   }
 }
