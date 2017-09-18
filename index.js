@@ -1,6 +1,6 @@
 'use strict'
 const {app, BrowserWindow, Menu} = require('electron')
-const store = require('./src/store')
+const store = require('./js/storage')
 
 require('electron-debug')()
 
