@@ -55,7 +55,8 @@
 .align-center { text-align: center; }
 .align-left { text-align: left; }
 .align-right { text-align: right; }
-.width-half { width: var(--width-half); }
+.width-1 { width: var(--width-1); }
+.width-2 { width: var(--width-2); }
 .margin-1 {
   margin-top: var(--whitespace-1);
   margin-right: var(--whitespace-1);

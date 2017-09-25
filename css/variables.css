@@ -4,7 +4,8 @@
   --whitespace-3: 2rem;
   --whitespace-4: 4rem;
 
-  --width-half: calc(100% / 2);
+  --width-1: calc(100% / 3);
+  --width-2: calc(100% / 3 * 2);
 
   --font-size-large: 1.25rem;
   --font-size-medium: 1rem;

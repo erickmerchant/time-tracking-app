@@ -37,5 +37,5 @@ kbd {
   width: 1em; /* 1 */
   height: 1em;
   vertical-align: -0.125em; /* 2 */
-  fill: currentcolor;
+  /*fill: currentcolor;*/
 }

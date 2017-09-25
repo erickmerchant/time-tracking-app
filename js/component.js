@@ -1,6 +1,7 @@
 const ift = require('@erickmerchant/ift')('')
 const {route} = require('@erickmerchant/router')()
 const html = require('bel')
+const raw = require('bel/raw')
 const format = require('./format')
 const classes = {
   body: 'border-box flex column margin-0 background-white font-size-medium max-height-100vh dark-gray',
@@ -11,14 +12,11 @@ const classes = {
   results: 'padding-2 margin-0 flex column desktop-padding-right-0',
   noResults: 'padding-1 align-center',
   item: 'margin-1 padding-1 flex wrap items-center',
-  column1: 'padding-1 bold width-half mobile-align-center desktop-align-left',
-  column2: 'padding-1 align-center width-half',
-  clock: 'icon margin-horizontal-1',
+  column1: 'padding-1 bold width-2 mobile-align-center desktop-align-left',
+  column2: 'padding-1 width-1',
   help: 'background-light-gray padding-2 font-size-small'
 }
-const icons = {
-  clock: require('geomicons-open/src/clock')
-}
+const icons = require('feather-icons')
 
 module.exports = function ({state, dispatch, next}) {
   const input = html`<input autofocus onkeyup="${search}" onfocus="${() => dispatch('help', 'input')}" onblur="${() => dispatch('help', false)}" value="" name="input" placeholder="What are you doing?" class="${classes.input}" />`
@@ -41,9 +39,7 @@ module.exports = function ({state, dispatch, next}) {
               return html`<div tabindex="0" onkeydown="${modify(task)}" onfocus="${() => dispatch('help', 'task')}" onblur="${() => dispatch('help', false)}" class="${classes.item} ${ift(task.isActive, 'border-left-large-blue', 'border-left-large-gray')}">
                 <div class="${classes.column1}">${task.title}</div>
                 <div class="${classes.column2}">
-                  <svg class="${classes.clock}" viewBox="0 0 32 32">
-                    <path d="${icons.clock}">
-                  </svg>
+                  ${icon('clock')}
                   ${format(task)}
                 </div>
               </div>`
@@ -56,6 +52,7 @@ module.exports = function ({state, dispatch, next}) {
       )}
     </main>
     <div class="${classes.help}">
+      ${icon('help-circle')}
       ${ift(state.help, () => route(state.help, (on) => {
         on('input', () => html`<span>Type to search. Press <kbd>return</kbd> to add. ${state.term !== '' ? html`<span>Press <kbd>esc</kbd> to clear the input.</span>` : ''} Use <kbd>tab</kbd> and <kbd>shift + tab</kbd> to navigate.</span>`)
 
@@ -99,4 +96,8 @@ module.exports = function ({state, dispatch, next}) {
       }
     }
   }
+}
+
+function icon (which) {
+  return raw(icons.toSvg(which, {'class': 'icon margin-horizontal-1', 'stroke-width': 3}))
 }
