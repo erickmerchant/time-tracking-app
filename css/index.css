@@ -39,3 +39,8 @@ kbd {
   vertical-align: -0.125em; /* 2 */
   /*fill: currentcolor;*/
 }
+
+.overflow-ellipsis { 
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

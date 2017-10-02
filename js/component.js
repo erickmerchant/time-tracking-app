@@ -14,7 +14,7 @@ const classes = {
   item: 'margin-1 padding-1 flex wrap items-center',
   column1: 'padding-1 bold width-2 mobile-align-center desktop-align-left',
   column2: 'padding-1 width-1',
-  help: 'background-light-gray padding-2 font-size-small'
+  help: 'background-light-gray padding-2 font-size-small overflow-ellipsis nowrap'
 }
 const icons = require('feather-icons')
 
