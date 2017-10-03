@@ -17,6 +17,8 @@ const classes = {
   help: 'background-light-gray padding-2 font-size-small overflow-ellipsis nowrap'
 }
 const icons = require('feather-icons')
+const release = require('os').release()
+const isDarwin = /Macintosh/.test(release)
 
 module.exports = function ({state, dispatch, next}) {
   const input = html`<input autofocus onkeyup="${search}" onfocus="${() => dispatch('help', 'input')}" onblur="${() => dispatch('help', false)}" value="" name="input" placeholder="What are you doing?" class="${classes.input}" />`
@@ -56,7 +58,7 @@ module.exports = function ({state, dispatch, next}) {
       ${ift(state.help, () => route(state.help, (on) => {
         on('input', () => html`<span>Type to search. Press <kbd>return</kbd> to add. ${state.term !== '' ? html`<span>Press <kbd>esc</kbd> to clear the input.</span>` : ''} Use <kbd>tab</kbd> and <kbd>shift + tab</kbd> to navigate.</span>`)
 
-        on('task', () => html`<span>Press <kbd>return</kbd> to toggle. Press <kbd>delete</kbd> to delete. Press <kbd>command + c</kbd> to copy (also resets time). Use <kbd>tab</kbd> and <kbd>shift + tab</kbd> to navigate.</span>`)
+        on('task', () => html`<span>Press <kbd>return</kbd> to toggle. Press <kbd>delete</kbd> to delete. Press <kbd>${isDarwin ? 'command' : 'ctrl'} + c</kbd> to copy (also resets time). Use <kbd>tab</kbd> and <kbd>shift + tab</kbd> to navigate.</span>`)
 
         on(() => html`<span>Use <kbd>tab</kbd> and <kbd>shift + tab</kbd> to navigate.</span>`)
       }), html`<span>Use <kbd>tab</kbd> and <kbd>shift + tab</kbd> to navigate.</span>`)}
@@ -82,7 +84,7 @@ module.exports = function ({state, dispatch, next}) {
   function modify (task) {
     return function (e) {
       switch (true) {
-        case e.key === 'c' && e.metaKey === true:
+        case e.key === 'c' && (isDarwin ? e.metaKey : e.ctrlKey) === true:
           dispatch('copy', task.uuid)
           break
 
