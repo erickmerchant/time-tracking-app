@@ -4,11 +4,11 @@ const html = require('bel')
 const raw = require('bel/raw')
 const format = require('./format')
 const classes = {
-  body: 'border-box flex column margin-0 background-white font-size-medium max-height-100vh dark-gray',
+  body: 'flex column margin-0 background-white font-size-medium max-height-100vh dark-gray',
   form: 'padding-2 font-size-large background-light-gray mobile-column',
   formField: 'full-width flex row',
   input: 'auto padding-2 margin-1 border-radius border-gray background-white placeholder-gray',
-  main: 'auto overflow-scroll',
+  main: 'auto overflow-auto',
   results: 'padding-2 margin-0 flex column desktop-padding-right-0',
   noResults: 'padding-1 align-center',
   item: 'margin-1 padding-1 flex wrap items-center',
