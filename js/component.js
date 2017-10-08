@@ -21,7 +21,7 @@ const release = require('os').release()
 const isDarwin = /Macintosh/.test(release)
 
 module.exports = function ({state, dispatch, next}) {
-  const input = html`<input autofocus onkeyup="${search}" onfocus="${() => dispatch('help', 'input')}" onblur="${() => dispatch('help', false)}" value="" name="input" placeholder="What are you doing?" class="${classes.input}" />`
+  const input = html`<input autofocus onkeyup=${search} onfocus=${() => dispatch('help', 'input')} onblur=${() => dispatch('help', false)} value="" name="input" placeholder="What are you doing?" class="${classes.input}" />`
 
   input.isSameNode = function (target) {
     return true
@@ -29,7 +29,7 @@ module.exports = function ({state, dispatch, next}) {
 
   return html`
   <body class="${classes.body}">
-    <form onsubmit="${add}" class="${classes.form}">
+    <form onsubmit=${add} class="${classes.form}">
       <div class="${classes.formField}">
         ${input}
       </div>
@@ -38,7 +38,7 @@ module.exports = function ({state, dispatch, next}) {
       ${ift(state.tasks.length,
         () => html`<div class="${classes.results}">
             ${state.tasks.map((task) => {
-              return html`<div tabindex="0" onkeydown="${modify(task)}" onfocus="${() => dispatch('help', 'task')}" onblur="${() => dispatch('help', false)}" class="${classes.item} ${ift(task.isActive, 'border-left-large-blue', 'border-left-large-gray')}">
+              return html`<div tabindex="0" onkeydown=${modify(task)} onfocus=${() => dispatch('help', 'task')} onblur=${() => dispatch('help', false)} class="${classes.item} ${ift(task.isActive, 'border-left-large-blue', 'border-left-large-gray')}">
                 <div class="${classes.column1}">${task.title}</div>
                 <div class="${classes.column2}">
                   ${icon('clock')}
