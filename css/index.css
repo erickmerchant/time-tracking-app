@@ -3,6 +3,7 @@
 html {
   height: 100%;
   word-wrap: break-word;
+  color: var(--black);
 }
 
 body {
@@ -40,7 +41,7 @@ kbd {
   /*fill: currentcolor;*/
 }
 
-.overflow-ellipsis { 
+.overflow-ellipsis {
   overflow: hidden;
   text-overflow: ellipsis;
 }

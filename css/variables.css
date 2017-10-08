@@ -18,14 +18,12 @@
   --border-radius: 3px;
   --border-radius-round: 100%;
 
-  --black: hsl(0, 0%, 10%);
-  --dark-gray: hsl(0, 0%, 32%);
-  --gray: hsl(0, 0%, 54%);
-  --light-gray: hsl(0, 0%, 76%);
-  --white: hsl(0, 0%, 98%);
-  --red: hsl(344, 80%, 75%);
-  --yellow: hsl(56, 80%, 75%);
-  --green: hsl(128, 80%, 75%);
-  --blue: hsl(200, 80%, 75%);
-  --purple: hsl(272, 80%, 75%);
+  --black: hsl(0, 0%, 1%);
+  --dark-gray: hsl(0, 0%, 25%);
+  --gray: hsl(0, 0%, 50%);
+  --light-gray: hsl(0, 0%, 75%);
+  --white: hsl(0, 0%, 99%);
+  --red: hsl(350, 100%, 60%);
+  --green: hsl(95, 80%, 60%);
+  --blue: hsl(200, 90%, 60%);
 }
