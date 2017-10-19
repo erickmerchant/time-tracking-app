@@ -15,7 +15,7 @@
   },
   "dependencies": {
     "@erickmerchant/assets": "^6.8.2",
-    "@erickmerchant/framework": "^12.1.2",
+    "@erickmerchant/framework": "^12.2.0",
     "@erickmerchant/ift": "^4.0.3",
     "@erickmerchant/router": "^14.1.2",
     "bel": "^5.1.3",
