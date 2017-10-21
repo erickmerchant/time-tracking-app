@@ -3,65 +3,53 @@ const {route} = require('@erickmerchant/router')()
 const html = require('bel')
 const raw = require('bel/raw')
 const format = require('./format')
-const classes = {
-  body: 'flex column margin-0 background-white font-size-medium max-height-100vh dark-gray',
-  form: 'padding-2 font-size-large background-light-gray mobile-column',
-  formField: 'full-width flex row',
-  input: 'auto padding-2 margin-1 border-radius border-gray background-white placeholder-gray',
-  main: 'auto overflow-auto',
-  results: 'padding-2 margin-0 flex column desktop-padding-right-0',
-  noResults: 'padding-1 align-center',
-  item: 'margin-1 padding-1 flex wrap items-center',
-  column1: 'padding-1 bold width-2 mobile-align-center desktop-align-left',
-  column2: 'padding-1 width-1',
-  help: 'background-light-gray padding-2 font-size-small overflow-ellipsis nowrap'
-}
 const icons = require('feather-icons')
 const release = require('os').release()
 const isDarwin = /Macintosh/.test(release)
+const deleteKey = isDarwin ? 'delete' : 'backspace'
+const returnKey = isDarwin ? 'return' : 'enter'
+const commandKey = isDarwin ? 'command' : 'ctrl'
 
 module.exports = function ({state, dispatch, next}) {
-  const input = html`<input autofocus onkeyup=${search} onfocus=${() => dispatch('help', 'input')} onblur=${() => dispatch('help', false)} value="" name="input" placeholder="What are you doing?" class="${classes.input}" />`
+  const input = html`<input autofocus onkeyup=${search} onfocus=${() => dispatch('help', 'input')} onblur=${() => dispatch('help', '')} value="" name="input" placeholder="Type to search. Press ${returnKey} to add." class="auto padding-2 margin-1 bold border-radius border-gray background-white placeholder-gray" />`
 
   input.isSameNode = function (target) {
     return true
   }
 
   return html`
-  <body class="${classes.body}">
-    <form onsubmit=${add} class="${classes.form}">
-      <div class="${classes.formField}">
-        ${input}
-      </div>
+  <body class="flex column margin-0 background-white font-size-medium max-height-100vh dark-gray">
+    <form onsubmit=${add} class="flex row padding-2 background-light-gray">
+      ${input}
     </form>
-    <main class="${classes.main}">
+    <main class="auto overflow-auto">
       ${ift(state.tasks.length,
-        () => html`<div class="${classes.results}">
+        () => html`<div class="padding-2 margin-0 flex column">
             ${state.tasks.map((task) => {
-              return html`<div tabindex="0" onkeydown=${modify(task)} onfocus=${() => dispatch('help', 'task')} onblur=${() => dispatch('help', false)} class="${classes.item} ${ift(task.isActive, 'border-left-large-blue', 'border-left-large-gray')}">
-                <div class="${classes.column1}">${task.title}</div>
-                <div class="${classes.column2}">
+              return html`<div tabindex="0" onkeydown=${modify(task)} onfocus=${() => dispatch('help', 'task')} onblur=${() => dispatch('help', '')} class="margin-1 padding-1 flex wrap items-center ${ift(task.isActive, 'border-left-large-blue', 'border-left-large-gray')}">
+                <div class="padding-1 bold width-2">${task.title}</div>
+                <div class="padding-1 width-1">
                   ${icon('clock')}
                   ${format(task)}
                 </div>
               </div>`
             })}
           </div>`,
-        ift(state.term === '',
-          () => html`<p class="${classes.noResults}">You're not tracking anything yet.</p>`,
-          () => html`<p class="${classes.noResults}">No results.</p>`
-        )
+        html`<p class="padding-1 align-center">${ift(state.term === '',
+          () => `You're not tracking anything yet.`,
+          () => `No results.`
+        )}</p>`
       )}
     </main>
-    <div class="${classes.help}">
+    <div class="background-light-gray padding-2 font-size-small overflow-ellipsis nowrap">
       ${icon('help-circle')}
-      ${ift(state.help, () => route(state.help, (on) => {
-        on('input', () => html`<span>Type to search. Press <kbd>return</kbd> to add. ${state.term !== '' ? html`<span>Press <kbd>esc</kbd> to clear the input.</span>` : ''} Use <kbd>tab</kbd> and <kbd>shift + tab</kbd> to navigate.</span>`)
+      ${route(state.help, (on) => {
+        on('input', () => state.term !== '' ? html`<span>Press <kbd>esc</kbd> to clear the input.</span>` : html``)
 
-        on('task', () => html`<span>Press <kbd>return</kbd> to toggle. Press <kbd>delete</kbd> to delete. Press <kbd>${isDarwin ? 'command' : 'ctrl'} + c</kbd> to copy (also resets time). Use <kbd>tab</kbd> and <kbd>shift + tab</kbd> to navigate.</span>`)
+        on('task', () => html`<span>Press <kbd>${returnKey}</kbd> to toggle. Press <kbd>${deleteKey}</kbd> to delete. Press <kbd>${commandKey} + c</kbd> to copy (also resets time). </span>`)
 
         on(() => html`<span>Use <kbd>tab</kbd> and <kbd>shift + tab</kbd> to navigate.</span>`)
-      }), html`<span>Use <kbd>tab</kbd> and <kbd>shift + tab</kbd> to navigate.</span>`)}
+      })}
     </div>
   </body>`
 

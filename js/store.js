@@ -15,31 +15,29 @@ module.exports = function (seed) {
     return {
       tasks: [],
       term: '',
-      help: false
+      help: ''
     }
   })
 
   return function (commit, action, arg) {
-    switch (action) {
-      case 'add':
-        ipcRenderer.send('add', arg)
-        break
-
-      case 'remove':
-        ipcRenderer.send('remove', arg)
-        break
-
-      case 'toggle':
-        ipcRenderer.send('toggle', arg)
-        break
-
-      case 'copy':
-        ipcRenderer.send('copy', arg)
-        break
-    }
-
     commit((state) => {
       switch (action) {
+        case 'add':
+          ipcRenderer.send('add', arg)
+          break
+
+        case 'remove':
+          ipcRenderer.send('remove', arg)
+          break
+
+        case 'toggle':
+          ipcRenderer.send('toggle', arg)
+          break
+
+        case 'copy':
+          ipcRenderer.send('copy', arg)
+          break
+
         case 'help':
           state.help = arg
           break
