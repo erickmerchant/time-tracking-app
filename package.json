@@ -14,7 +14,7 @@
     "build": "npm test && assets . ./build --no-min --electron && electron-packager . --out=dist --asar --overwrite --all"
   },
   "dependencies": {
-    "@erickmerchant/assets": "^6.8.3",
+    "@erickmerchant/assets": "^6.8.5",
     "@erickmerchant/framework": "^12.2.0",
     "@erickmerchant/ift": "^4.0.3",
     "@erickmerchant/router": "^14.1.2",
