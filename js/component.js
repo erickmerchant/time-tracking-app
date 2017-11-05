@@ -1,17 +1,10 @@
-const ift = require('@erickmerchant/ift')('')
-const {route} = require('@erickmerchant/router')()
 const html = require('bel')
 const raw = require('bel/raw')
 const format = require('./format')
 const icons = require('feather-icons')
-const release = require('os').release()
-const isDarwin = /Macintosh/.test(release)
-const deleteKey = isDarwin ? 'delete' : 'backspace'
-const returnKey = isDarwin ? 'return' : 'enter'
-const commandKey = isDarwin ? 'command' : 'ctrl'
 
 module.exports = function ({state, dispatch, next}) {
-  const input = html`<input autofocus onkeyup=${search} onfocus=${() => dispatch('help', 'input')} onblur=${() => dispatch('help', '')} value="" name="input" placeholder="Type to search. Press ${returnKey} to add." class="auto padding-2 margin-1 bold border-radius border-gray background-white placeholder-gray" />`
+  const input = html`<input autofocus onkeyup=${search} value="" name="input" placeholder="Type to search. Press enter to add." class="auto padding-2 margin-1 bold border-radius border-gray background-white placeholder-gray" />`
 
   input.isSameNode = function (target) {
     return true
@@ -22,34 +15,35 @@ module.exports = function ({state, dispatch, next}) {
     <form onsubmit=${add} class="flex row padding-2 background-light-gray">
       ${input}
     </form>
-    <main class="auto overflow-auto">
-      ${ift(state.tasks.length,
-        () => html`<div class="padding-2 margin-0 flex column">
+    <main class="auto overflow-auto">${
+        state.tasks.length
+        ? html`<div class="margin-0">
             ${state.tasks.map((task) => {
-              return html`<div tabindex="0" onkeydown=${modify(task)} onfocus=${() => dispatch('help', 'task')} onblur=${() => dispatch('help', '')} class="margin-1 padding-1 flex wrap items-center ${ift(task.isActive, 'border-left-large-blue', 'border-left-large-gray')}">
-                <div class="padding-1 bold width-2">${task.title}</div>
-                <div class="padding-1 width-1">
+              return html`<div class="grid items-center padding-2">
+                <div class="${task.isActive ? 'border-left-large-blue' : 'border-left-large-gray'} padding-2"><strong>${task.title}</strong></div>
+                <div>
                   ${icon('clock')}
                   ${format(task)}
                 </div>
+                <div>
+                  <button class="background-white border-none margin-1" type="button" onclick=${() => dispatch('toggle', task.uuid)}>${
+                    task.isActive
+                    ? icon('pause')
+                    : icon('play')
+                  }</button>
+                  <button class="background-white border-none margin-1" type="button" onclick=${() => dispatch('copy', task.uuid)}>${icon('copy')}</button>
+                  <button class="background-white border-none margin-1" type="button" onclick=${() => dispatch('remove', task.uuid)}>${icon('delete')}</button>
+                </div>
               </div>`
             })}
-          </div>`,
-        html`<p class="padding-1 align-center">${ift(state.term === '',
-          () => `You're not tracking anything yet.`,
-          () => `No results.`
-        )}</p>`
-      )}
-    </main>
+          </div>`
+        : html`<p class="padding-1 align-center">${
+          state.term === ''
+          ? `You're not tracking anything yet.`
+          : `No results.`
+        }</p>`
+    }</main>
     <div class="background-light-gray padding-2 font-size-small overflow-ellipsis nowrap">
-      ${icon('help-circle')}
-      ${route(state.help, (on) => {
-        on('input', () => state.term !== '' ? html`<span>Press <kbd>esc</kbd> to clear the input.</span>` : html``)
-
-        on('task', () => html`<span>Press <kbd>${returnKey}</kbd> to toggle. Press <kbd>${deleteKey}</kbd> to delete. Press <kbd>${commandKey} + c</kbd> to copy (also resets time). </span>`)
-
-        on(() => html`<span>Use <kbd>tab</kbd> and <kbd>shift + tab</kbd> to navigate.</span>`)
-      })}
     </div>
   </body>`
 
@@ -67,24 +61,6 @@ module.exports = function ({state, dispatch, next}) {
     e.preventDefault()
 
     dispatch('add', state.term)
-  }
-
-  function modify (task) {
-    return function (e) {
-      switch (true) {
-        case e.key === 'c' && (isDarwin ? e.metaKey : e.ctrlKey) === true:
-          dispatch('copy', task.uuid)
-          break
-
-        case e.key === 'Backspace':
-          dispatch('remove', task.uuid)
-          break
-
-        case e.key === 'Enter':
-          dispatch('toggle', task.uuid)
-          break
-      }
-    }
   }
 }
 

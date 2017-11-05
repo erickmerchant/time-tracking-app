@@ -34,6 +34,11 @@ kbd {
   max-height: 100vh;
 }
 
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, calc(100%/3));
+}
+
 .icon {
   width: 1em; /* 1 */
   height: 1em;

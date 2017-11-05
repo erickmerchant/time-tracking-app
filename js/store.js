@@ -14,8 +14,7 @@ module.exports = function (seed) {
 
     return {
       tasks: [],
-      term: '',
-      help: ''
+      term: ''
     }
   })
 
@@ -36,10 +35,6 @@ module.exports = function (seed) {
 
         case 'copy':
           ipcRenderer.send('copy', arg)
-          break
-
-        case 'help':
-          state.help = arg
           break
 
         case 'search':

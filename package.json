@@ -16,8 +16,6 @@
   "dependencies": {
     "@erickmerchant/assets": "^6.8.14",
     "@erickmerchant/framework": "^12.2.1",
-    "@erickmerchant/ift": "^4.0.4",
-    "@erickmerchant/router": "^14.1.3",
     "bel": "^5.1.5",
     "devtron": "^1.1.0",
     "electron": "^1.8.1",
