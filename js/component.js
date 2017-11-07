@@ -62,6 +62,8 @@ module.exports = function ({state, dispatch, next}) {
   function add (e) {
     e.preventDefault()
 
+    this.input.value = ''
+
     dispatch('add', state.term)
   }
 }
