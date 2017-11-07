@@ -50,3 +50,7 @@ kbd {
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+.monospace {
+  font-family: Courier, monospace;
+}

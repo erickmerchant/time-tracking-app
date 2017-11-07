@@ -17,10 +17,14 @@ ipcMain.on('search', function (e, title) {
   assert.equal(typeof title, 'string')
 
   const tasks = store.get('tasks', [])
+  const active = tasks.filter((tasks) => tasks.isActive).length
+  const inactive = tasks.length - active
 
   const results = title.trim() !== '' ? tasks.filter((task) => task.title.toLowerCase().indexOf(title.toLowerCase()) > -1) : tasks
 
-  e.sender.send('search', results)
+  e.sender.send('results', results)
+
+  e.sender.send('stats', {active, inactive})
 })
 
 ipcMain.on('add', function (e, title) {

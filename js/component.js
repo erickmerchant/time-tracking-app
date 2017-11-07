@@ -23,7 +23,7 @@ module.exports = function ({state, dispatch, next}) {
                 <div class="${task.isActive ? 'border-left-large-blue' : 'border-left-large-gray'} padding-2"><strong>${task.title}</strong></div>
                 <div>
                   ${icon('clock')}
-                  ${format(task)}
+                  <span class="monospace">${format(task)}</span>
                 </div>
                 <div>
                   <button class="background-white border-none margin-1" type="button" onclick=${() => dispatch('toggle', task.uuid)}>${
@@ -43,7 +43,9 @@ module.exports = function ({state, dispatch, next}) {
           : `No results.`
         }</p>`
     }</main>
-    <div class="background-light-gray padding-2 font-size-small overflow-ellipsis nowrap">
+    <div class="background-light-gray padding-2 font-size-small bold">
+      <span class="margin-1">Active <span class="background-white padding-horizontal-1 border-gray border-radius monospace">${state.stats.active}</span></span>
+      <span class="margin-1">Inactive <span class="background-white padding-horizontal-1 border-gray border-radius monospace">${state.stats.inactive}</span></span>
     </div>
   </body>`
 

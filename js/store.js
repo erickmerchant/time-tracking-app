@@ -2,9 +2,17 @@ const {ipcRenderer} = require('electron')
 
 module.exports = function (seed) {
   seed(function (commit) {
-    ipcRenderer.on('search', function (e, tasks) {
+    ipcRenderer.on('results', function (e, tasks) {
       commit((state) => {
         state.tasks = tasks
+
+        return state
+      })
+    })
+
+    ipcRenderer.on('stats', function (e, stats) {
+      commit((state) => {
+        state.stats = stats
 
         return state
       })
@@ -14,6 +22,10 @@ module.exports = function (seed) {
 
     return {
       tasks: [],
+      stats: {
+        active: 0,
+        inactive: 0
+      },
       term: ''
     }
   })
