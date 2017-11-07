@@ -4,7 +4,7 @@ const format = require('./format')
 const icons = require('feather-icons')
 
 module.exports = function ({state, dispatch, next}) {
-  const input = html`<input autofocus onkeyup=${search} value="" name="input" placeholder="Type to search. Press enter to add." class="auto padding-2 margin-1 bold border-radius border-gray background-white placeholder-gray" />`
+  const input = html`<input autofocus onkeyup=${search} value="" name="input" placeholder="Type to search. Press enter to add." class="full-width fit-width padding-2 bold border-radius border-gray background-white placeholder-gray" />`
 
   input.isSameNode = function (target) {
     return true
@@ -12,7 +12,7 @@ module.exports = function ({state, dispatch, next}) {
 
   return html`
   <body class="flex column margin-0 background-white font-size-medium max-height-100vh dark-gray">
-    <form onsubmit=${add} class="flex row padding-2 background-light-gray">
+    <form onsubmit=${add} class="padding-3 full-width fit-width background-light-gray">
       ${input}
     </form>
     <main class="auto overflow-auto">${
