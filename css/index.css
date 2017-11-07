@@ -9,7 +9,7 @@ html {
 body {
   height: 100%;
   margin: 0;
-  font-family: system-ui;
+  font-family: Ubuntu, system-ui;
 }
 
 input {
@@ -49,8 +49,4 @@ kbd {
 .overflow-ellipsis {
   overflow: hidden;
   text-overflow: ellipsis;
-}
-
-.monospace {
-  font-family: Courier, monospace;
 }
