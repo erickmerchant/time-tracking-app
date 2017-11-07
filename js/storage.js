@@ -43,15 +43,13 @@ ipcMain.on('add', function (e, title) {
       return task
     })
 
-    tasks = tasks.concat([
-      {
-        uuid: uuidv1(),
-        title,
-        isActive: true,
-        startTime: Date.now(),
-        totalTime: 0
-      }
-    ])
+    tasks.unshift({
+      uuid: uuidv1(),
+      title,
+      isActive: true,
+      startTime: Date.now(),
+      totalTime: 0
+    })
   }
 
   store.set('tasks', tasks)
