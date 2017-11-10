@@ -4,7 +4,7 @@ const store = require('./store')
 const component = require('./component')
 const target = document.body
 
-framework({target, diff, component, store})(function ({dispatch}) {
+framework({target, diff, component, store})(function (dispatch) {
   tick()
 
   function tick () {

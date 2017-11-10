@@ -15,7 +15,7 @@
   },
   "dependencies": {
     "@erickmerchant/assets": "^6.8.17",
-    "@erickmerchant/framework": "^12.2.1",
+    "@erickmerchant/framework": "^13.0.0",
     "bel": "^5.1.5",
     "devtron": "^1.1.0",
     "electron": "^1.8.1",

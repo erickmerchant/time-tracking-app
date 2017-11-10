@@ -1,25 +1,25 @@
 const {ipcRenderer} = require('electron')
 
-module.exports = function (seed) {
-  seed(function (commit) {
-    ipcRenderer.on('results', function (e, tasks) {
-      commit((state) => {
-        state.tasks = tasks
+module.exports = function (commit) {
+  ipcRenderer.on('results', function (e, tasks) {
+    commit((state) => {
+      state.tasks = tasks
 
-        return state
-      })
+      return state
     })
+  })
 
-    ipcRenderer.on('stats', function (e, stats) {
-      commit((state) => {
-        state.stats = stats
+  ipcRenderer.on('stats', function (e, stats) {
+    commit((state) => {
+      state.stats = stats
 
-        return state
-      })
+      return state
     })
+  })
 
-    ipcRenderer.send('search', '')
+  ipcRenderer.send('search', '')
 
+  commit(function () {
     return {
       tasks: [],
       stats: {
@@ -30,7 +30,7 @@ module.exports = function (seed) {
     }
   })
 
-  return function (commit, action, arg) {
+  return function (action, arg) {
     commit((state) => {
       switch (action) {
         case 'add':
