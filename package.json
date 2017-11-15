@@ -9,12 +9,12 @@
   "author": "Erick Merchant <erickmerchant@gmail.com>",
   "scripts": {
     "test": "standard",
-    "watch": "electron . & assets . ./build -w --no-min --electron",
+    "watch": "electron . & assets . ./build -w --electron",
     "preview": "electron .",
-    "build": "npm test && assets . ./build --no-min --electron && electron-packager . --out=dist --asar --overwrite --all"
+    "build": "npm test && assets . ./build --electron && electron-packager . --out=dist --asar --overwrite --all"
   },
   "dependencies": {
-    "@erickmerchant/assets": "^8.0.0",
+    "@erickmerchant/assets": "^9.0.0",
     "@erickmerchant/framework": "^13.0.1",
     "bel": "^5.1.5",
     "devtron": "^1.1.0",
