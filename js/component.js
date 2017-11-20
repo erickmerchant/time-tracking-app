@@ -16,32 +16,32 @@ module.exports = function ({state, dispatch, next}) {
       ${input}
     </form>
     <main class="auto overflow-auto">${
-        state.tasks.length
-        ? html`<div class="margin-0">
-            ${state.tasks.map((task) => {
-              return html`<div class="grid items-center padding-2">
-                <div class="${task.isActive ? 'border-left-large-blue' : 'border-left-large-gray'} padding-2"><strong>${task.title}</strong></div>
-                <div>
-                  ${icon('clock')}
-                  ${format(task)}
-                </div>
-                <div>
-                  <button class="background-white border-none margin-1" type="button" onclick=${() => dispatch('toggle', task.uuid)}>${
-                    task.isActive
-                    ? icon('pause')
-                    : icon('play')
-                  }</button>
-                  <button class="background-white border-none margin-1" type="button" onclick=${() => dispatch('copy', task.uuid)}>${icon('copy')}</button>
-                  <button class="background-white border-none margin-1" type="button" onclick=${() => dispatch('remove', task.uuid)}>${icon('delete')}</button>
-                </div>
-              </div>`
-            })}
-          </div>`
-        : html`<p class="padding-1 align-center">${
-          state.term === ''
-          ? `You're not tracking anything yet.`
-          : `No results.`
-        }</p>`
+      state.tasks.length
+      ? html`<div class="margin-0">
+          ${state.tasks.map((task) => {
+            return html`<div class="grid items-center padding-2">
+              <div class="${task.isActive ? 'border-left-large-blue' : 'border-left-large-gray'} padding-2"><strong>${task.title}</strong></div>
+              <div>
+                ${icon('clock')}
+                ${format(task)}
+              </div>
+              <div>
+                <button class="background-white border-none margin-1" type="button" onclick=${() => dispatch('toggle', task.uuid)}>${
+                  task.isActive
+                  ? icon('pause')
+                  : icon('play')
+                }</button>
+                <button class="background-white border-none margin-1" type="button" onclick=${() => dispatch('copy', task.uuid)}>${icon('copy')}</button>
+                <button class="background-white border-none margin-1" type="button" onclick=${() => dispatch('remove', task.uuid)}>${icon('delete')}</button>
+              </div>
+            </div>`
+          })}
+        </div>`
+      : html`<p class="padding-1 align-center">${
+        state.term === ''
+        ? `You're not tracking anything yet.`
+        : `No results.`
+      }</p>`
     }</main>
     <footer class="background-light-gray padding-2 font-size-small bold">
       <span class="margin-horizontal-2"><span class="padding-horizontal-1 margin-right-1 white background-blue border-blue border-radius">${state.stats.active}</span> Active</span>
