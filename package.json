@@ -13,11 +13,11 @@
     "preview": "electron .",
     "build": "npm test && assets . ./build --electron && npm run package-win32 && npm run package-darwin && npm run package-linux",
     "package-win32": "electron-packager . --out=dist --asar --overwrite --arch=x64 --platform=win32",
-    "package-darwin": "electron-packager . --out=dist --asar --overwrite --arch=x64 --platform=darwin",  
-    "package-linux": "electron-packager . --out=dist --asar --overwrite --arch=x64 --platform=linux"  
+    "package-darwin": "electron-packager . --out=dist --asar --overwrite --arch=x64 --platform=darwin",
+    "package-linux": "electron-packager . --out=dist --asar --overwrite --arch=x64 --platform=linux"
   },
   "dependencies": {
-    "@erickmerchant/assets": "^9.0.3",
+    "@erickmerchant/assets": "^9.0.4",
     "@erickmerchant/framework": "^13.0.1",
     "bel": "^5.1.5",
     "devtron": "^1.1.0",
