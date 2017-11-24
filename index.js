@@ -41,24 +41,6 @@ app.on('ready', () => {
   Menu.setApplicationMenu(Menu.buildFromTemplate(template))
 })
 
-function onClosed () {
-  let tasks = store.get('tasks', [])
-
-  tasks = tasks.map((task) => {
-    if (task.isActive) {
-      task.isActive = false
-
-      task.totalTime += Date.now() - task.startTime
-    }
-
-    return task
-  })
-
-  store.set('tasks', tasks)
-
-  mainWindow = null
-}
-
 function createMainWindow () {
   const win = new BrowserWindow({
     width: 700,
@@ -73,7 +55,23 @@ function createMainWindow () {
     win.show()
   })
 
-  win.on('closed', onClosed)
+  win.on('closed', () => {
+    let tasks = store.get('tasks', [])
+
+    tasks = tasks.map((task) => {
+      if (task.isActive) {
+        task.isActive = false
+
+        task.totalTime += Date.now() - task.startTime
+      }
+
+      return task
+    })
+
+    store.set('tasks', tasks)
+
+    mainWindow = null
+  })
 
   return win
 }
