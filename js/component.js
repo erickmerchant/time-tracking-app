@@ -1,7 +1,7 @@
 const html = require('bel')
 const raw = require('bel/raw')
 const format = require('./format')
-const icons = require('feather-icons')
+const icons = require('feather-icons').icons
 
 module.exports = function ({state, dispatch, next}) {
   const input = html`<input autofocus onkeyup=${search} value="" name="input" placeholder="Type to search. Press enter to add." class="full-width fit-width padding-2 bold border-radius border-gray background-white placeholder-gray" />`
@@ -69,5 +69,5 @@ module.exports = function ({state, dispatch, next}) {
 }
 
 function icon (which) {
-  return raw(icons.toSvg(which, {'class': 'icon margin-horizontal-1', 'stroke-width': 3}))
+  return raw(icons[which].toSvg({'class': 'icon margin-horizontal-1', 'stroke-width': 3}))
 }
