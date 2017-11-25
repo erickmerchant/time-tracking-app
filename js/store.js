@@ -30,6 +30,14 @@ module.exports = function (commit) {
     }
   })
 
+  tick()
+
+  function tick () {
+    commit((state) => state)
+
+    setTimeout(tick, 1000)
+  }
+
   return function (action, arg) {
     commit((state) => {
       switch (action) {

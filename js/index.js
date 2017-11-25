@@ -4,12 +4,4 @@ const store = require('./store')
 const component = require('./component')
 const target = document.body
 
-framework({target, diff, component, store})(function (dispatch) {
-  tick()
-
-  function tick () {
-    dispatch()
-
-    setTimeout(tick, 1000)
-  }
-})
+framework({target, diff, component, store})
