@@ -21,7 +21,7 @@ app.on('activate', () => {
 app.on('ready', () => {
   mainWindow = createMainWindow()
 
-  var template = [
+  const template = [
     {
       label: 'Time Tracker',
       submenu: [

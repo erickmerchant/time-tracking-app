@@ -19,7 +19,7 @@ module.exports = function ({state, dispatch, next}) {
       state.tasks.length
       ? html`<div class="margin-0">
           ${state.tasks.map((task) => {
-            return html`<div class="grid items-center padding-2">
+            return html`<div class="grid columns-3 items-center padding-2">
               <div class="${task.isActive ? 'border-left-large-blue' : 'border-left-large-gray'} padding-2"><strong>${task.title}</strong></div>
               <div>
                 ${icon('clock')}

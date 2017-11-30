@@ -9,15 +9,15 @@
   "author": "Erick Merchant <erickmerchant@gmail.com>",
   "scripts": {
     "test": "standard",
-    "watch": "electron . & assets . ./build -w --electron",
+    "watch": "electron . & assets ./build -w --electron",
     "preview": "electron .",
-    "build": "npm test && assets . ./build --electron && npm run package-win32 && npm run package-darwin && npm run package-linux",
+    "build": "npm test && assets ./build --electron && npm run package-win32 && npm run package-darwin && npm run package-linux",
     "package-win32": "electron-packager . --out=dist --asar --overwrite --arch=x64 --platform=win32",
     "package-darwin": "electron-packager . --out=dist --asar --overwrite --arch=x64 --platform=darwin",
     "package-linux": "electron-packager . --out=dist --asar --overwrite --arch=x64 --platform=linux"
   },
   "dependencies": {
-    "@erickmerchant/assets": "^9.0.4",
+    "@erickmerchant/assets": "^10.0.0",
     "@erickmerchant/framework": "^13.0.1",
     "bel": "^5.1.5",
     "devtron": "^1.1.0",
