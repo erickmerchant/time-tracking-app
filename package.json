@@ -17,7 +17,7 @@
     "package-linux": "electron-packager . --out=dist --asar --overwrite --arch=x64 --platform=linux"
   },
   "dependencies": {
-    "@erickmerchant/assets": "^10.0.0",
+    "@erickmerchant/assets": "^10.0.1",
     "@erickmerchant/framework": "^13.0.1",
     "bel": "^5.1.5",
     "devtron": "^1.1.0",
