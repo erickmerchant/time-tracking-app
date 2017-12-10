@@ -9,31 +9,24 @@ module.exports = function (commit) {
     })
   })
 
-  ipcRenderer.on('stats', function (e, stats) {
-    commit((state) => {
-      state.stats = stats
-
-      return state
-    })
-  })
-
   ipcRenderer.send('search', '')
 
   commit(function () {
     return {
       tasks: [],
-      stats: {
-        active: 0,
-        inactive: 0
-      },
-      term: ''
+      term: '',
+      now: Date.now()
     }
   })
 
   tick()
 
   function tick () {
-    commit((state) => state)
+    commit((state) => {
+      state.now = Date.now()
+
+      return state
+    })
 
     setTimeout(tick, 1000)
   }

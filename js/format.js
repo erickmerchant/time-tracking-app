@@ -21,8 +21,15 @@ const UNITS = [
   }
 ]
 
-module.exports = function (task) {
-  let total = task.totalTime + (task.isActive ? Date.now() - task.startTime : 0)
+module.exports = function (tasks, now) {
+  if (!Array.isArray(tasks)) {
+    tasks = [tasks]
+  }
+
+  let total = tasks
+    .map((task) => task.totalTime + (task.isActive ? now - task.startTime : 0))
+    .map((taskTotal) => taskTotal - (taskTotal % MINUTE))
+    .reduce((total, taskTotal) => total + taskTotal, 0)
 
   const reduced = UNITS.reduce((acc, unit) => {
     const curr = Math.floor(acc.total / unit.value)

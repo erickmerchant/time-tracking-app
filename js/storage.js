@@ -1,4 +1,3 @@
-'use strict'
 const {ipcMain, clipboard} = require('electron')
 const assert = require('assert')
 const uuidv1 = require('uuid/v1')
@@ -17,14 +16,10 @@ ipcMain.on('search', function (e, title) {
   assert.equal(typeof title, 'string')
 
   const tasks = store.get('tasks', [])
-  const active = tasks.filter((tasks) => tasks.isActive).length
-  const inactive = tasks.length - active
 
   const results = title.trim() !== '' ? tasks.filter((task) => task.title.toLowerCase().indexOf(title.toLowerCase()) > -1) : tasks
 
   e.sender.send('results', results)
-
-  e.sender.send('stats', {active, inactive})
 })
 
 ipcMain.on('add', function (e, title) {
@@ -100,7 +95,7 @@ ipcMain.on('copy', function (e, uuid) {
 
   let task = tasks.find((task) => task.uuid === uuid)
 
-  clipboard.writeText(format(task))
+  clipboard.writeText(format(task, Date.now()))
 
   task.startTime = Date.now()
 
