@@ -2,7 +2,7 @@
   "name": "@erickmerchant/time-tracking-app",
   "productName": "Time Tracker",
   "private": true,
-  "version": "1.0.8",
+  "version": "1.0.11",
   "description": "a simple app to track time",
   "license": "MIT",
   "repository": "https://github.com/erickmerchant/time-tracking-app",
