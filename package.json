@@ -10,7 +10,7 @@
   "scripts": {
     "test": "standard",
     "watch": "electron . & assets ./build -w --electron",
-    "build": "npm test && assets ./build --electron && electron-packager . --out=dist --asar --overwrite --arch=x64 --platform=win32,darwin,linux"
+    "build": "assets ./build --electron && electron-packager . --out=dist --asar --overwrite --arch=x64 --platform=win32,darwin,linux"
   },
   "dependencies": {
     "@erickmerchant/assets": "^10.2.0",
