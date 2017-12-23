@@ -9,11 +9,11 @@
   "author": "Erick Merchant <erickmerchant@gmail.com>",
   "scripts": {
     "test": "standard",
-    "watch": "electron . & assets ./build -w --electron",
-    "build": "assets ./build --electron && electron-packager . --out=dist --asar --overwrite --arch=x64 --platform=win32,darwin,linux"
+    "watch": "electron . & assets js/index.js css/index.css ./build/bundle -w --electron",
+    "build": "assets js/index.js css/index.css ./build/bundle --electron && electron-packager . --out=dist --asar --overwrite --arch=x64 --platform=win32,darwin,linux"
   },
   "dependencies": {
-    "@erickmerchant/assets": "^10.3.3",
+    "@erickmerchant/assets": "^11.0.2",
     "@erickmerchant/framework": "^13.1.1",
     "bel": "^5.1.5",
     "devtron": "^1.1.0",
