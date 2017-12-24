@@ -28,7 +28,7 @@ ipcMain.on('add', function (e, title) {
   let tasks = store.get('tasks', [])
 
   if (title.trim() !== '') {
-    tasks = tasks.map((task) => {
+    tasks = tasks.map(function (task) {
       if (task.isActive) {
         task.isActive = false
 
@@ -72,7 +72,7 @@ ipcMain.on('toggle', function (e, uuid) {
 
     task.isActive = false
   } else {
-    tasks.forEach((task) => {
+    tasks.forEach(function (task) {
       if (task.isActive) {
         task.isActive = false
 

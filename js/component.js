@@ -18,7 +18,7 @@ module.exports = function ({state, dispatch, next}) {
     <main class="auto overflow-auto">${
       state.tasks.length
       ? html`<div class="margin-0">
-          ${state.tasks.map((task) => {
+          ${state.tasks.map(function (task) {
             return html`<div class="grid columns-3 items-center padding-2">
               <div class="${task.isActive ? 'border-left-large-blue' : 'border-left-large-gray'} padding-2"><strong>${task.title}</strong></div>
               <div>

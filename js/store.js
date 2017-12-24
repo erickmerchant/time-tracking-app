@@ -2,7 +2,7 @@ const {ipcRenderer} = require('electron')
 
 module.exports = function (commit) {
   ipcRenderer.on('results', function (e, tasks) {
-    commit((state) => {
+    commit(function (state) {
       state.tasks = tasks
 
       return state
@@ -22,7 +22,7 @@ module.exports = function (commit) {
   tick()
 
   function tick () {
-    commit((state) => {
+    commit(function (state) {
       state.now = Date.now()
 
       return state
@@ -32,7 +32,7 @@ module.exports = function (commit) {
   }
 
   return function (action, arg) {
-    commit((state) => {
+    commit(function (state) {
       switch (action) {
         case 'add':
           ipcRenderer.send('add', arg)

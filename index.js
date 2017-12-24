@@ -6,19 +6,19 @@ require('electron-debug')()
 
 let mainWindow
 
-app.on('window-all-closed', () => {
+app.on('window-all-closed', function () {
   if (process.platform !== 'darwin') {
     app.quit()
   }
 })
 
-app.on('activate', () => {
+app.on('activate', function () {
   if (!mainWindow) {
     mainWindow = createMainWindow()
   }
 })
 
-app.on('ready', () => {
+app.on('ready', function () {
   mainWindow = createMainWindow()
 
   const template = [
@@ -51,14 +51,14 @@ function createMainWindow () {
 
   win.loadURL(`file://${__dirname}/index.html`)
 
-  win.once('ready-to-show', () => {
+  win.once('ready-to-show', function () {
     win.show()
   })
 
-  win.on('closed', () => {
+  win.on('closed', function () {
     let tasks = store.get('tasks', [])
 
-    tasks = tasks.map((task) => {
+    tasks = tasks.map(function (task) {
       if (task.isActive) {
         task.isActive = false
 

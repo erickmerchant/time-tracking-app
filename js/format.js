@@ -31,7 +31,7 @@ module.exports = function (tasks, now) {
     .map((taskTotal) => taskTotal - (taskTotal % MINUTE))
     .reduce((total, taskTotal) => total + taskTotal, 0)
 
-  const reduced = UNITS.reduce((acc, unit) => {
+  const reduced = UNITS.reduce(function (acc, unit) {
     const curr = Math.floor(acc.total / unit.value)
 
     if (curr) acc.results.push(curr + unit.label)
