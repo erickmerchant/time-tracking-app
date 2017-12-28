@@ -12,14 +12,10 @@ const store = new Store({
 
 module.exports = store
 
-ipcMain.on('search', function (e, title) {
-  assert.equal(typeof title, 'string')
-
+ipcMain.on('read', function (e) {
   const tasks = store.get('tasks', [])
 
-  const results = title.trim() !== '' ? tasks.filter((task) => task.title.toLowerCase().indexOf(title.toLowerCase()) > -1) : tasks
-
-  e.sender.send('results', results)
+  e.sender.send('results', tasks)
 })
 
 ipcMain.on('add', function (e, title) {
@@ -48,6 +44,8 @@ ipcMain.on('add', function (e, title) {
   }
 
   store.set('tasks', tasks)
+
+  e.sender.send('results', tasks)
 })
 
 ipcMain.on('remove', function (e, uuid) {
@@ -58,6 +56,8 @@ ipcMain.on('remove', function (e, uuid) {
   tasks = tasks.filter((task) => task.uuid !== uuid)
 
   store.set('tasks', tasks)
+
+  e.sender.send('results', tasks)
 })
 
 ipcMain.on('toggle', function (e, uuid) {
@@ -86,6 +86,8 @@ ipcMain.on('toggle', function (e, uuid) {
   }
 
   store.set('tasks', tasks)
+
+  e.sender.send('results', tasks)
 })
 
 ipcMain.on('copy', function (e, uuid) {
@@ -102,4 +104,6 @@ ipcMain.on('copy', function (e, uuid) {
   task.totalTime = 0
 
   store.set('tasks', tasks)
+
+  e.sender.send('results', tasks)
 })

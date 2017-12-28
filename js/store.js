@@ -9,7 +9,7 @@ module.exports = function (commit) {
     })
   })
 
-  ipcRenderer.send('search', '')
+  ipcRenderer.send('read')
 
   commit(function () {
     return {
@@ -58,12 +58,10 @@ module.exports = function (commit) {
           ipcRenderer.send('copy', arg)
           break
 
-        case 'search':
+        case 'term':
           state.term = arg
           break
       }
-
-      ipcRenderer.send('search', state.term)
 
       state.now = Date.now()
 
