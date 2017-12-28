@@ -9,7 +9,7 @@ module.exports = function (commit) {
     })
   })
 
-  ipcRenderer.send('search', '')
+  ipcRenderer.send('read')
 
   commit(function () {
     return {
@@ -19,19 +19,27 @@ module.exports = function (commit) {
     }
   })
 
+  let shouldTick = true
+
   tick()
 
   function tick () {
-    commit(function (state) {
-      state.now = Date.now()
+    if (shouldTick) {
+      commit(function (state) {
+        state.now = Date.now()
 
-      return state
-    })
+        return state
+      })
+    }
 
-    setTimeout(tick, 1000)
+    shouldTick = true
+
+    setTimeout(tick, 100)
   }
 
   return function (action, arg) {
+    shouldTick = false
+
     commit(function (state) {
       switch (action) {
         case 'add':
@@ -50,12 +58,12 @@ module.exports = function (commit) {
           ipcRenderer.send('copy', arg)
           break
 
-        case 'search':
+        case 'term':
           state.term = arg
           break
       }
 
-      ipcRenderer.send('search', state.term)
+      state.now = Date.now()
 
       return state
     })
