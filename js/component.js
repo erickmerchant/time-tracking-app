@@ -57,9 +57,11 @@ module.exports = function ({state, dispatch, next}) {
   function add (e) {
     e.preventDefault()
 
+    dispatch('add', state.term)
+
     this.input.value = ''
 
-    dispatch('add', state.term)
+    dispatch('term', '')
   }
 }
 
