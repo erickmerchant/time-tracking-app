@@ -1,5 +1,5 @@
-const html = require('bel')
-const raw = require('bel/raw')
+const html = require('nanohtml')
+const raw = require('nanohtml/raw')
 const format = require('./format')
 const icons = require('feather-icons').icons
 
