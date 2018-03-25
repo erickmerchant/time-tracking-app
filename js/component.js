@@ -6,7 +6,7 @@ const icons = require('feather-icons').icons
 module.exports = function ({state, dispatch, next}) {
   return html`<body class="flex column margin-0 background-white font-size-medium max-height-100vh dark-gray">
     <form onsubmit=${add} class="padding-3 full-width fit-width background-light-gray">
-      <input autofocus onkeyup=${escapeMaybe} oninput=${setTerm} value="${state.term}" name="input" placeholder="Press enter to add." class="full-width fit-width padding-2 bold border-radius border-gray background-white placeholder-gray" />
+      <input autofocus onkeyup=${escapeMaybe} oninput=${setTerm} value="${state.term}" name="input" placeholder="Press enter to add." class="full-width fit-width padding-2 bold border-radius border-dark-gray background-white dark-gray placeholder-gray" />
     </form>
     <main class="auto overflow-auto">${main()}</main>
     <footer class="background-light-gray padding-2 bold">
@@ -24,15 +24,19 @@ module.exports = function ({state, dispatch, next}) {
 
   function item (task) {
     return html`<div class="grid columns-3 items-center padding-2">
-      <div class="${task.isActive ? 'border-left-large-blue' : 'border-left-large-gray'} padding-2"><strong>${task.title}</strong></div>
+      <div class="${task.isActive ? 'border-left-large-blue' : 'border-left-large-dark-gray'} padding-2"><strong>${task.title}</strong></div>
       <div>
         ${icon('clock')}
         ${format(task, state.now)}
       </div>
       <div class="align-right">
-        <button class="background-white border-none margin-1" type="button" onclick=${() => dispatch('toggle', task.uuid)}>${icon(task.isActive ? 'pause' : 'play')}</button>
-        <button class="background-white border-none margin-1" type="button" onclick=${() => dispatch('copy', task.uuid)}>${icon('copy')}</button>
-        <button class="background-white border-none margin-1" type="button" onclick=${() => dispatch('remove', task.uuid)}>${icon('delete')}</button>
+        <div class="inline-flex items-center border-dark-gray dark-gray border-radius">
+          <button class="border-none background-white dark-gray" type="button" onclick=${() => dispatch('toggle', task.uuid)}>${icon(task.isActive ? 'pause' : 'play')}</button>
+          <span>|</span>
+          <button class="border-none border-right-dark-gray border-left-dark-gray background-white dark-gray" type="button" onclick=${() => dispatch('copy', task.uuid)}>${icon('copy')}</button>
+          <span>|</span>
+          <button class="border-none background-white dark-gray" type="button" onclick=${() => dispatch('remove', task.uuid)}>${icon('delete')}</button>
+        </div>
       </div>
     </div>`
   }
