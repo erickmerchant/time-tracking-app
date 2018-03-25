@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "@erickmerchant/assets": "^12.3.0",
-    "@erickmerchant/framework": "^13.1.2",
+    "@erickmerchant/framework": "^13.2.0",
     "devtron": "^1.1.0",
     "electron": "^1.8.4",
     "electron-debug": "^1.5.0",
