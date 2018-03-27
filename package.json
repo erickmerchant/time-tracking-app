@@ -13,8 +13,8 @@
     "build": "assets js/index.js css/index.css ./build/bundle --electron && electron-packager . --out=dist --asar --overwrite --arch=x64 --platform=win32,darwin,linux"
   },
   "dependencies": {
-    "@erickmerchant/assets": "^13.0.0",
-    "@erickmerchant/framework": "^13.2.0",
+    "@erickmerchant/assets": "^13.0.1",
+    "@erickmerchant/framework": "^13.3.0",
     "devtron": "^1.1.0",
     "electron": "^1.8.4",
     "electron-debug": "^1.5.0",
