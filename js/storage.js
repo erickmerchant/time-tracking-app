@@ -72,13 +72,13 @@ ipcMain.on('toggle', function (e, uuid) {
 
     task.isActive = false
   } else {
-    tasks.forEach(function (task) {
+    for (let task of tasks) {
       if (task.isActive) {
         task.isActive = false
 
         task.totalTime += Date.now() - task.startTime
       }
-    })
+    }
 
     task.startTime = !task.isActive ? Date.now() : task.startTime
 
