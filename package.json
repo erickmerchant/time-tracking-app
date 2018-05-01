@@ -9,8 +9,9 @@
   "author": "Erick Merchant <erickmerchant@gmail.com>",
   "scripts": {
     "test": "standard",
-    "watch": "electron . & assets js/index.js css/index.css ./build/bundle -w --electron",
-    "build": "assets js/index.js css/index.css ./build/bundle --electron && electron-packager . --out=dist --asar --overwrite --arch=x64 --platform=win32,darwin,linux"
+    "assets": "assets js/index.js css/index.css ./build/bundle --electron",
+    "watch": "electron . & npm run assets -- -w",
+    "build": "npm run assets && electron-packager . --out=dist --asar --overwrite --arch=x64 --platform=win32,darwin,linux"
   },
   "dependencies": {
     "@erickmerchant/assets": "^13.0.11",
