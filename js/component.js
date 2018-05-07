@@ -19,7 +19,7 @@ module.exports = function ({state, dispatch, next}) {
       ? html`<div class="margin-0">
           ${state.tasks.map(item)}
         </div>`
-      : html`<p class="padding-1 align-center">${state.term === '' ? `You're not tracking anything yet.` : `No results.`}</p>`
+      : html`<p class="padding-1 align-center">You're not tracking anything yet.</p>`
   }
 
   function item (task) {
