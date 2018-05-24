@@ -14,10 +14,10 @@
     "build": "npm run assets && electron-packager . --out=dist --asar --overwrite --arch=x64 --platform=win32,darwin,linux"
   },
   "dependencies": {
-    "@erickmerchant/assets": "^13.5.1",
+    "@erickmerchant/assets": "^13.6.0",
     "@erickmerchant/framework": "^13.3.0",
     "devtron": "^1.1.0",
-    "electron": "^2.0.1",
+    "electron": "^2.0.2",
     "electron-debug": "^1.5.0",
     "electron-packager": "^12.1.0",
     "electron-store": "^1.3.0",
