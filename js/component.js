@@ -10,7 +10,7 @@ module.exports = function ({state, dispatch, next}) {
     </form>
     <main class="auto overflow-auto">${main()}</main>
     <footer class="background-light-gray padding-2 bold">
-      <span class="dark-gray padding-vertical-1">${icon('clock')} <span class="padding-right-1">${format(state.tasks, state.now)}</span></span>
+      <span class="black padding-vertical-1">${icon('clock')} <span class="padding-right-1">${format(state.tasks, state.now)}</span></span>
     </footer>
   </body>`
 
