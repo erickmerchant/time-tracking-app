@@ -4,9 +4,9 @@ const format = require('./format')
 const icons = require('feather-icons').icons
 
 module.exports = function ({state, dispatch, next}) {
-  return html`<body class="flex column margin-0 background-white max-height-100vh dark-gray">
+  return html`<body class="flex column margin-0 background-white max-height-100vh black">
     <form onsubmit=${add} class="padding-3 full-width fit-width background-light-gray">
-      <input autofocus onkeyup=${escapeMaybe} oninput=${setTerm} value="${state.term}" name="input" placeholder="Press enter to add." class="full-width fit-width padding-2 bold border-radius border-3-dark-gray background-white dark-gray placeholder-light-gray" />
+      <input autofocus onkeyup=${escapeMaybe} oninput=${setTerm} value="${state.term}" name="input" placeholder="Press enter to add." class="full-width fit-width padding-2 bold border-radius border-3-dark-gray background-white black placeholder-light-gray" />
     </form>
     <main class="auto overflow-auto">${main()}</main>
     <footer class="background-light-gray padding-2 bold">
@@ -24,13 +24,13 @@ module.exports = function ({state, dispatch, next}) {
 
   function item (task) {
     return html`<div class="grid columns-3 items-center padding-2">
-      <div class="${task.isActive ? 'border-left-3-blue' : 'border-left-3-dark-gray'} padding-2"><strong>${task.title}</strong></div>
+      <div class="${task.isActive ? 'border-left-3-blue' : 'border-left-3-light-gray'} padding-2"><strong>${task.title}</strong></div>
       <div>
         ${icon('clock')}
         ${format(task, state.now)}
       </div>
       <div class="align-right">
-        <div class="items-center dark-gray">
+        <div class="items-center nowrap">
           <button class="border-top-2-dark-gray border-left-2-dark-gray border-bottom-2-dark-gray border-right-1-dark-gray border-left-radius background-white dark-gray" type="button" onclick=${() => dispatch('toggle', task.uuid)}>${icon(task.isActive ? 'pause' : 'play')}</button>
           <button class="border-top-2-dark-gray border-bottom-2-dark-gray border-right-1-dark-gray border-left-1-dark-gray background-white dark-gray" type="button" onclick=${() => dispatch('copy', task.uuid)}>${icon('copy')}</button>
           <button class="border-top-2-dark-gray border-right-2-dark-gray border-bottom-2-dark-gray border-left-1-dark-gray border-right-radius background-white dark-gray" type="button" onclick=${() => dispatch('remove', task.uuid)}>${icon('delete')}</button>
