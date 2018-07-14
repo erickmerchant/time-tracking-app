@@ -14,7 +14,7 @@
     "build": "npm run assets && electron-packager . --out=dist --asar --overwrite --arch=x64 --platform=win32,darwin,linux"
   },
   "dependencies": {
-    "@erickmerchant/assets": "^13.11.1",
+    "@erickmerchant/assets": "^13.11.2",
     "@erickmerchant/framework": "^13.3.2",
     "devtron": "^1.1.0",
     "electron": "^2.0.5",
