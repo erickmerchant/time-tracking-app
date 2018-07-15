@@ -23,6 +23,64 @@ module.exports = function (commit) {
 
   tick()
 
+  return {
+    add (arg) {
+      shouldTick = false
+
+      ipcRenderer.send('add', arg)
+
+      commit(function (state) {
+        state.now = Date.now()
+
+        return state
+      })
+    },
+    remove (arg) {
+      shouldTick = false
+
+      ipcRenderer.send('remove', arg)
+
+      commit(function (state) {
+        state.now = Date.now()
+
+        return state
+      })
+    },
+    toggle (arg) {
+      shouldTick = false
+
+      ipcRenderer.send('toggle', arg)
+
+      commit(function (state) {
+        state.now = Date.now()
+
+        return state
+      })
+    },
+    copy (arg) {
+      shouldTick = false
+
+      ipcRenderer.send('copy', arg)
+
+      commit(function (state) {
+        state.now = Date.now()
+
+        return state
+      })
+    },
+    term (arg) {
+      shouldTick = false
+
+      commit(function (state) {
+        state.term = arg
+
+        state.now = Date.now()
+
+        return state
+      })
+    }
+  }
+
   function tick () {
     if (shouldTick) {
       commit(function (state) {
@@ -35,37 +93,5 @@ module.exports = function (commit) {
     shouldTick = true
 
     setTimeout(tick, 100)
-  }
-
-  return function (action, arg) {
-    shouldTick = false
-
-    commit(function (state) {
-      switch (action) {
-        case 'add':
-          ipcRenderer.send('add', arg)
-          break
-
-        case 'remove':
-          ipcRenderer.send('remove', arg)
-          break
-
-        case 'toggle':
-          ipcRenderer.send('toggle', arg)
-          break
-
-        case 'copy':
-          ipcRenderer.send('copy', arg)
-          break
-
-        case 'term':
-          state.term = arg
-          break
-      }
-
-      state.now = Date.now()
-
-      return state
-    })
   }
 }
