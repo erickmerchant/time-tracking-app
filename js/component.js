@@ -4,13 +4,13 @@ const format = require('./format')
 const icons = require('feather-icons').icons
 
 module.exports = function ({state, dispatch, next}) {
-  return html`<body class="flex column margin-0 background-white max-height-100vh black">
-    <form onsubmit=${add} class="padding-3 full-width fit-width background-light-gray">
-      <input autofocus onkeyup=${escapeMaybe} oninput=${setTerm} value="${state.term}" name="input" placeholder="Press enter to add." class="full-width fit-width padding-2 bold border-radius border-3-dark-gray background-white black placeholder-light-gray" />
+  return html`<body class="flex column margin-0 background-white max-height-100vh black border-box">
+    <form onsubmit=${add} class="padding-3 width-full max-width-full background-light-gray">
+      <input autofocus onkeyup=${escapeMaybe} oninput=${setTerm} value="${state.term}" name="input" placeholder="Press enter to add." class="width-full max-width-full padding-2 bold border-radius border-3-dark-gray background-white black placeholder-light-gray" />
     </form>
-    <main class="auto overflow-auto">${main()}</main>
+    <main class="flex-auto overflow-auto">${main()}</main>
     <footer class="background-light-gray padding-2 bold">
-      <span class="black padding-vertical-1">${icon('clock')} <span class="padding-right-1">${format(state.tasks, state.now)}</span></span>
+      <span class="black padding-y-1">${icon('clock')} <span class="padding-right-1">${format(state.tasks, state.now)}</span></span>
     </footer>
   </body>`
 
@@ -63,5 +63,5 @@ module.exports = function ({state, dispatch, next}) {
 }
 
 function icon (which) {
-  return raw(icons[which].toSvg({'class': 'icon margin-horizontal-1', 'stroke-width': 3}))
+  return raw(icons[which].toSvg({'class': 'icon margin-x-1', 'stroke-width': 3}))
 }
