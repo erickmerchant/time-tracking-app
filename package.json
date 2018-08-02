@@ -17,7 +17,7 @@
     "@erickmerchant/assets": "^14.0.1",
     "@erickmerchant/framework": "^14.0.0",
     "devtron": "^1.1.0",
-    "electron": "^2.0.5",
+    "electron": "^2.0.6",
     "electron-debug": "^2.0.0",
     "electron-packager": "^12.1.0",
     "electron-store": "^2.0.0",
