@@ -31,9 +31,9 @@ module.exports = function ({state, dispatch, next}) {
       </div>
       <div class="align-right">
         <div class="items-center nowrap">
-          <button class="border-dark-gray border-y-2 border-left-2 border-right-1 border-left-radius background-white dark-gray" type="button" onclick=${() => dispatch('toggle', task.uuid)}>${icon(task.isActive ? 'pause' : 'play')}</button>
-          <button class="border-dark-gray border-y-2 border-x-1 background-white dark-gray" type="button" onclick=${() => dispatch('copy', task.uuid)}>${icon('copy')}</button>
-          <button class="border-dark-gray border-y-2 border-right-2 border-left-1 border-right-radius background-white dark-gray" type="button" onclick=${() => dispatch('remove', task.uuid)}>${icon('delete')}</button>
+          <button class="border-solid border-dark-gray border-y-2 border-left-2 border-right-1 border-left-radius background-white dark-gray" type="button" onclick=${() => dispatch('toggle', task.uuid)}>${icon(task.isActive ? 'pause' : 'play')}</button>
+          <button class="border-solid border-dark-gray border-y-2 border-x-1 background-white dark-gray" type="button" onclick=${() => dispatch('copy', task.uuid)}>${icon('copy')}</button>
+          <button class="border-solid border-dark-gray border-y-2 border-right-2 border-left-1 border-right-radius background-white dark-gray" type="button" onclick=${() => dispatch('remove', task.uuid)}>${icon('delete')}</button>
         </div>
       </div>
     </div>`
