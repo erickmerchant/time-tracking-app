@@ -26,17 +26,17 @@ module.exports = function (tasks, now) {
     tasks = [tasks]
   }
 
-  let total = tasks
+  const total = tasks
     .map((task) => task.totalTime + (task.isActive ? now - task.startTime : 0))
     .map((taskTotal) => taskTotal - (taskTotal % MINUTE))
     .reduce((total, taskTotal) => total + taskTotal, 0)
 
-  const reduced = UNITS.reduce(function (acc, unit) {
+  const reduced = UNITS.reduce((acc, unit) => {
     const curr = Math.floor(acc.total / unit.value)
 
     if (curr) acc.results.push(curr + unit.label)
 
-    acc.total -= (curr * unit.value)
+    acc.total -= curr * unit.value
 
     return acc
   }, {

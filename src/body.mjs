@@ -1,6 +1,6 @@
 const html = require('nanohtml')
 const raw = require('nanohtml/raw')
-const format = require('./format')
+const format = require('./format.mjs')
 const icons = require('feather-icons').icons
 
 module.exports = function ({state, dispatch, next}) {
@@ -14,7 +14,7 @@ module.exports = function ({state, dispatch, next}) {
     </footer>
   </body>`
 
-  function main () {
+  function main() {
     return state.tasks.length
       ? html`<div class="margin-0">
           ${state.tasks.map(item)}
@@ -22,7 +22,7 @@ module.exports = function ({state, dispatch, next}) {
       : html`<p class="padding-1 align-center">You're not tracking anything yet.</p>`
   }
 
-  function item (task) {
+  function item(task) {
     return html`<div class="grid columns-3 items-center padding-2">
       <div class="border-left-solid border-left-3 ${task.isActive ? 'border-blue' : 'border-light-gray'} padding-2"><strong>${task.title}</strong></div>
       <div>
@@ -39,11 +39,11 @@ module.exports = function ({state, dispatch, next}) {
     </div>`
   }
 
-  function setTerm (e) {
+  function setTerm(e) {
     dispatch('term', this.value)
   }
 
-  function escapeMaybe (e) {
+  function escapeMaybe(e) {
     if (e.key === 'Escape') {
       this.value = ''
 
@@ -51,7 +51,7 @@ module.exports = function ({state, dispatch, next}) {
     }
   }
 
-  function add (e) {
+  function add(e) {
     e.preventDefault()
 
     dispatch('add', state.term)
@@ -62,6 +62,6 @@ module.exports = function ({state, dispatch, next}) {
   }
 }
 
-function icon (which) {
-  return raw(icons[which].toSvg({'class': 'icon margin-x-1', 'stroke-width': 3}))
+function icon(which) {
+  return raw(icons[which].toSvg({class: 'icon margin-x-1', 'stroke-width': 3}))
 }

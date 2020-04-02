@@ -9,7 +9,7 @@
   "author": "Erick Merchant <erickmerchant@gmail.com>",
   "scripts": {
     "test": "lint '**/*.js'",
-    "assets": "dev cache src dist",
+    "assets": "dev cache src temp",
     "watch": "electron . & npm run assets -- -w",
     "build": "npm run assets && electron-packager . --out=dist --asar --overwrite --arch=x64 --platform=win32,darwin,linux"
   },

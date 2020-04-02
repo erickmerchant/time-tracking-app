@@ -1,8 +1,8 @@
 const {ipcRenderer} = require('electron')
 
 module.exports = function (commit) {
-  ipcRenderer.on('results', function (e, tasks) {
-    commit(function (state) {
+  ipcRenderer.on('results', (e, tasks) => {
+    commit((state) => {
       state.tasks = tasks
 
       return state
@@ -11,7 +11,7 @@ module.exports = function (commit) {
 
   ipcRenderer.send('read')
 
-  commit(function () {
+  commit(() => {
     return {
       tasks: [],
       term: '',
@@ -24,54 +24,54 @@ module.exports = function (commit) {
   tick()
 
   return {
-    add (arg) {
+    add(arg) {
       shouldTick = false
 
       ipcRenderer.send('add', arg)
 
-      commit(function (state) {
+      commit((state) => {
         state.now = Date.now()
 
         return state
       })
     },
-    remove (arg) {
+    remove(arg) {
       shouldTick = false
 
       ipcRenderer.send('remove', arg)
 
-      commit(function (state) {
+      commit((state) => {
         state.now = Date.now()
 
         return state
       })
     },
-    toggle (arg) {
+    toggle(arg) {
       shouldTick = false
 
       ipcRenderer.send('toggle', arg)
 
-      commit(function (state) {
+      commit((state) => {
         state.now = Date.now()
 
         return state
       })
     },
-    copy (arg) {
+    copy(arg) {
       shouldTick = false
 
       ipcRenderer.send('copy', arg)
 
-      commit(function (state) {
+      commit((state) => {
         state.now = Date.now()
 
         return state
       })
     },
-    term (arg) {
+    term(arg) {
       shouldTick = false
 
-      commit(function (state) {
+      commit((state) => {
         state.term = arg
 
         state.now = Date.now()
@@ -81,9 +81,9 @@ module.exports = function (commit) {
     }
   }
 
-  function tick () {
+  function tick() {
     if (shouldTick) {
-      commit(function (state) {
+      commit((state) => {
         state.now = Date.now()
 
         return state
