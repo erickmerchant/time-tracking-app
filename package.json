@@ -8,23 +8,19 @@
   "repository": "https://github.com/erickmerchant/time-tracking-app",
   "author": "Erick Merchant <erickmerchant@gmail.com>",
   "scripts": {
-    "test": "standard",
-    "assets": "assets js/index.js css/index.css ./temp/bundle --electron",
+    "test": "lint '**/*.js'",
+    "assets": "dev cache src dist",
     "watch": "electron . & npm run assets -- -w",
     "build": "npm run assets && electron-packager . --out=dist --asar --overwrite --arch=x64 --platform=win32,darwin,linux"
   },
   "dependencies": {
-    "@erickmerchant/assets": "^14.0.3",
-    "@erickmerchant/framework": "^14.0.0",
-    "devtron": "^1.1.0",
-    "electron": "^2.0.8",
-    "electron-debug": "^2.0.0",
-    "electron-packager": "^12.1.0",
-    "electron-store": "^2.0.0",
-    "feather-icons": "^4.7.3",
-    "nanohtml": "^1.2.3",
-    "nanomorph": "^5.1.3",
-    "standard": "^11.0.1",
-    "uuid": "^3.3.2"
+    "@erickmerchant/dev-cli": "^9.5.0",
+    "@erickmerchant/framework": "^32.3.2",
+    "@erickmerchant/lint": "^4.1.2",
+    "electron": "^8.2.0",
+    "electron-debug": "^3.0.1",
+    "electron-packager": "^14.2.1",
+    "electron-store": "^5.1.1",
+    "uuid": "^7.0.3"
   }
 }
